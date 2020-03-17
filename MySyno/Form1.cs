@@ -18,7 +18,7 @@ namespace MySyno
             ssh.RaiseCustomEvent += SetText;
             ssh.Test();
 
-            ssh.commande_Event += Resultat;
+            ssh.CommandeEvent += Resultat;
             ssh.SendCommand("ls");
 
 
@@ -32,6 +32,18 @@ namespace MySyno
 
         public void Resultat(object sender, CustomEventArgs e)
         {
+            // Cross thread - so you don't get the cross-threading exception
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    Resultat(sender, e);
+                });
+                return;
+            }
+
+            // Change control
+
             richTextBox1.Text = e.Message;
         }
     }

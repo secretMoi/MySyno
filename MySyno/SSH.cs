@@ -13,12 +13,12 @@ namespace MySyno
         private string host;
         private int port;
 
-        private SshClient client;
-        private Mutex verrouMutex;
+        private readonly SshClient client;
+        private readonly Mutex verrouMutex;
 
         // Declare the event using EventHandler<T>
         public event EventHandler<CustomEventArgs> RaiseCustomEvent;
-        public event EventHandler<CustomEventArgs> commande_Event;
+        public event EventHandler<CustomEventArgs> CommandeEvent;
 
 
         public SSH(string host, string user, string password, int port = 22)
@@ -35,7 +35,6 @@ namespace MySyno
 
         public void Connect()
         {
-            //output = client.RunCommand("echo test").Result;
             Thread threadConnect = new Thread(ThreadConnect);
             threadConnect.Start();
         }
@@ -62,12 +61,15 @@ namespace MySyno
         private void RunCommand(string commande)
         {
             verrouMutex.WaitOne();
-            SshCommand resultat = null;
 
             if (client.IsConnected)
-                resultat = client.RunCommand(commande);
+            {
+                SshCommand sc = client.CreateCommand(commande);
+                sc.Execute();
+                string resultat = sc.Result;
 
-            Commande_Event(new CustomEventArgs(resultat?.CommandText));
+                Commande_Event(new CustomEventArgs(resultat));
+            }
             verrouMutex.ReleaseMutex();
         }
 
@@ -94,12 +96,13 @@ namespace MySyno
         protected virtual void Commande_Event(CustomEventArgs e)
         {
             // fait un copie si un subscriber se désinscrit entre le if et le handler()
-            EventHandler<CustomEventArgs> handler = commande_Event;
+            EventHandler<CustomEventArgs> handler = CommandeEvent;
 
             // handler vaut null si il n'y a aucun subscriber
             if (handler != null)
             {
                 // Use the () operator to raise the event.
+                //form.BeginInvoke(handler(this, e));
                 handler(this, e);
             }
         }
@@ -121,6 +124,7 @@ namespace MySyno
 
                 // Use the () operator to raise the event.
                 handler(this, e);
+
             }
         }
     }
