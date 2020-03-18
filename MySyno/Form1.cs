@@ -5,37 +5,29 @@ namespace MySyno
 {
     public partial class Form1 : Form
     {
+        readonly SSH ssh;
+
         public Form1()
         {
             InitializeComponent();
+
+            ssh = new SSH("192.168.1.20", "Quentin", "ee6f4e2b02", 32);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SSH ssh = new SSH("192.168.1.20", "Quentin", "ee6f4e2b02", 32);
             ssh.Connect();
 
-            ssh.RaiseCustomEvent += SetText;
-            ssh.Test();
-
-            ssh.CommandeEvent += Resultat;
-            ssh.SendCommand("ls");
-
-
-            //ssh.Disconnect();
+            //ssh.CommandeEvent += Resultat;
+            ssh.SendCommand("ls", Resultat);
         }
 
-        public void SetText(object sender, CustomEventArgs e)
+        public void Resultat(object sender, CommandEventArgs e)
         {
-            button1.Text = e.Message;
-        }
-
-        public void Resultat(object sender, CustomEventArgs e)
-        {
-            // Cross thread - so you don't get the cross-threading exception
-            if (this.InvokeRequired)
+            // permet de lancer cette méthode via un autre thread
+            if (InvokeRequired)
             {
-                this.BeginInvoke((MethodInvoker)delegate
+                BeginInvoke((MethodInvoker)delegate
                 {
                     Resultat(sender, e);
                 });
@@ -43,8 +35,12 @@ namespace MySyno
             }
 
             // Change control
-
             richTextBox1.Text = e.Message;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ssh.Disconnect();
         }
     }
 }
