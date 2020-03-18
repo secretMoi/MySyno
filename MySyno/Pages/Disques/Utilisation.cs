@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
 using MySyno.Controls;
+using MySyno.Fenetres;
 
-namespace MySyno.Fenetres
+namespace MySyno.Pages.Disques
 {
-    public partial class UtilisationDisque : FormSsh
+    public partial class Utilisation : ThemePanel
     {
         private enum Colonnes
         {
             Total = 1, Utilise = 2, Utilisation = 4, Nom = 5
         }
 
-        public UtilisationDisque()
+        public Utilisation()
         {
             InitializeComponent();
 
-            Ssh.Connect();
             Ssh.SendCommand("df -h", GereEspace);
         }
 
@@ -65,23 +65,23 @@ namespace MySyno.Fenetres
                             break;
                     }
                 }
-                
+
                 if (total != null && utilise != null && nom != null && pourcentage != null)
                 {
-                    Utilisation utilisation = CreerUtilisation(compteurColonne, nom, utilise, pourcentage, total);
+                    Controls.Utilisation utilisation = CreerUtilisation(compteurColonne, nom, utilise, pourcentage, total);
                     flowLayoutPanel.Controls.Add(utilisation); // ajoute le control au FlowPanel
 
                     total = utilise = nom = null; // reset
                 }
-                
+
                 compteurColonne++;
             }
         }
 
         // Crée et renvoie un control Utilisation
-        private Utilisation CreerUtilisation(int compteur, string nom, string utilise, string pourcentage, string total)
+        private Controls.Utilisation CreerUtilisation(int compteur, string nom, string utilise, string pourcentage, string total)
         {
-            Utilisation utilisationCourante = new Utilisation();
+            Controls.Utilisation utilisationCourante = new Controls.Utilisation();
             utilisationCourante.Name = "utilisation" + compteur;
             utilisationCourante.BorderStyle = BorderStyle.FixedSingle;
 
