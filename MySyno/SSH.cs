@@ -4,7 +4,7 @@ using Renci.SshNet;
 
 namespace MySyno
 {
-    class SSH
+    public class SSH
     {
         private string user;
         private string password;
@@ -51,9 +51,10 @@ namespace MySyno
             threadClose.Start();
         }
 
-        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat)
+        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat = null)
         {
-            CommandeEvent += resultat;
+            if(resultat != null)
+                CommandeEvent += resultat;
 
             Thread t = new Thread(() => RunCommand(commande));
             t.Start();
@@ -90,17 +91,10 @@ namespace MySyno
             VerrouMutex.ReleaseMutex();
         }
 
-        protected virtual void Commande_Event(CommandEventArgs e)
+        private void Commande_Event(CommandEventArgs e)
         {
-            // fait un copie si un subscriber se désinscrit entre le if et le handler()
-            EventHandler<CommandEventArgs> handler = CommandeEvent;
-
-            // handler vaut null si il n'y a aucun subscriber
-            if (handler != null)
-            {
-                // utilise l'opérateur () pour lever l'évènement
-                handler(this, e);
-            }
+            // invoke la fonction de retour
+            CommandeEvent?.Invoke(this, e);
         }
     }
 

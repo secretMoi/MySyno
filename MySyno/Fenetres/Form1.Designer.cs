@@ -1,4 +1,4 @@
-﻿namespace MySyno
+﻿namespace MySyno.Fenetres
 {
     partial class Form1
     {
@@ -30,6 +30,10 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.applicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuApplications_UtilisationDisque = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -50,17 +54,47 @@
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.applicationsToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(984, 24);
+            this.menu.TabIndex = 2;
+            this.menu.Text = "menuStrip1";
+            // 
+            // applicationsToolStripMenuItem
+            // 
+            this.applicationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuApplications_UtilisationDisque});
+            this.applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
+            this.applicationsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.applicationsToolStripMenuItem.Text = "Applications";
+            // 
+            // menuApplications_UtilisationDisque
+            // 
+            this.menuApplications_UtilisationDisque.Name = "menuApplications_UtilisationDisque";
+            this.menuApplications_UtilisationDisque.Size = new System.Drawing.Size(191, 22);
+            this.menuApplications_UtilisationDisque.Text = "Utilisation des disques";
+            this.menuApplications_UtilisationDisque.Click += new System.EventHandler(this.Menu_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(984, 611);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.menu);
+            this.MainMenuStrip = this.menu;
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,6 +102,9 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem applicationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuApplications_UtilisationDisque;
     }
 }
 

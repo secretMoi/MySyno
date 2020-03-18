@@ -1,0 +1,23 @@
+﻿using System.Drawing;
+
+namespace MySyno.Core.Figures
+{
+    public class Arc : Figure
+    {
+        private float angleDebut;
+        private float amplitude;
+        
+        public Arc(Couple position, Couple dimension, Color contour, int largeurContour, float angleDebut, float amplitude) : base(position, dimension, null, contour, largeurContour)
+        {
+            this.angleDebut = angleDebut;
+            this.amplitude = amplitude;
+        }
+
+        public override void Genere()
+        {
+            Graphique.DrawArc(Contour, position.Xf, position.Yf,
+                dimension.Xf, dimension.Yf,
+                angleDebut, amplitude);
+        }
+    }
+}

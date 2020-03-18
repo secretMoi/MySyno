@@ -1,0 +1,16 @@
+﻿using System.Drawing;
+
+namespace MySyno.Core.Figures
+{
+    public class Point : Figure
+    {
+        public Point(Couple position, Couple dimension, Color couleur) : base(position, dimension, couleur)
+        {
+        }
+
+        public override void Genere()
+        {
+            
+        }
+    }
+}
