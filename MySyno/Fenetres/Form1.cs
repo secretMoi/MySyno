@@ -15,6 +15,8 @@ namespace MySyno.Fenetres
         {
             InitializeComponent();
 
+            Resize += Form1_Resize;
+
             Ssh = new SSH("192.168.1.20", "Quentin", "ee6f4e2b02", 32);
 
             ThemePanel.SetConnection(Ssh);
@@ -137,6 +139,11 @@ namespace MySyno.Fenetres
                 Width = MousePosition.X - anciennePositionCurseur.X + ancienneTailleFenetre.Width;
                 Height = MousePosition.Y - anciennePositionCurseur.Y + ancienneTailleFenetre.Height;
             }
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            Update();
         }
     }
 }

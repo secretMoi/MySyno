@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonConnexion = new MySyno.Controls.Buttons.FlatButton();
             this.labelConnexion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.buttonConnexion = new MySyno.Controls.Buttons.FlatButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -51,6 +51,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 220);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonConnexion
+            // 
+            this.buttonConnexion.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonConnexion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+            this.buttonConnexion.FlatAppearance.BorderSize = 0;
+            this.buttonConnexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonConnexion.Font = new System.Drawing.Font("Yu Gothic UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConnexion.ForeColor = System.Drawing.Color.White;
+            this.buttonConnexion.Location = new System.Drawing.Point(514, 127);
+            this.buttonConnexion.Name = "buttonConnexion";
+            this.buttonConnexion.Size = new System.Drawing.Size(239, 63);
+            this.buttonConnexion.TabIndex = 2;
+            this.buttonConnexion.Text = "flatButton1";
+            this.buttonConnexion.UseVisualStyleBackColor = false;
+            this.buttonConnexion.Click += new System.EventHandler(this.buttonConnexion_Click);
             // 
             // labelConnexion
             // 
@@ -124,29 +140,16 @@
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // buttonConnexion
-            // 
-            this.buttonConnexion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-            this.buttonConnexion.FlatAppearance.BorderSize = 0;
-            this.buttonConnexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonConnexion.Font = new System.Drawing.Font("Yu Gothic UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConnexion.ForeColor = System.Drawing.Color.White;
-            this.buttonConnexion.Location = new System.Drawing.Point(514, 127);
-            this.buttonConnexion.Name = "buttonConnexion";
-            this.buttonConnexion.Size = new System.Drawing.Size(239, 63);
-            this.buttonConnexion.TabIndex = 2;
-            this.buttonConnexion.Text = "flatButton1";
-            this.buttonConnexion.UseVisualStyleBackColor = false;
-            this.buttonConnexion.Click += new System.EventHandler(this.buttonConnexion_Click);
-            // 
             // Accueil
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.Name = "Accueil";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
