@@ -10,7 +10,7 @@ namespace MySyno.Controls
             InitializeComponent();
         }
 
-        public void SetConnection(SSH ssh)
+        public static void SetConnection(SSH ssh)
         {
             Ssh = ssh;
         }

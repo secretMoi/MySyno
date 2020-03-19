@@ -64,6 +64,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Buttons\FlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\FlatButton.Designer.cs">
+      <DependentUpon>FlatButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Buttons\MenuFlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\MenuFlatButton.Designer.cs">
+      <DependentUpon>MenuFlatButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Accueil.cs">
       <SubType>UserControl</SubType>
     </Compile>

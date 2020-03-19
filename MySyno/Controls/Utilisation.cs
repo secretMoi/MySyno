@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using MySyno.Core;
-using MySyno.Core.Figures;
 
 namespace MySyno.Controls
 {

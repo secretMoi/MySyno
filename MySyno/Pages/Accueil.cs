@@ -1,4 +1,5 @@
-﻿using MySyno.Controls;
+﻿using System.Windows.Forms;
+using MySyno.Controls;
 
 namespace MySyno.Pages
 {
@@ -7,6 +8,43 @@ namespace MySyno.Pages
         public Accueil()
         {
             InitializeComponent();
+
+            ChangeEtatConnection(null, null);
+        }
+
+        public void ChangeEtatConnection(object sender, CommandEventArgs e)
+        {
+            if (InvokeRequired) // permet de lancer cette méthode via un autre thread
+            {
+                BeginInvoke((MethodInvoker)delegate
+                {
+                    ChangeEtatConnection(sender, e);
+                });
+                return;
+            }
+
+            if (Ssh.IsConnected)
+            {
+                labelConnexion.Text = @"Connexion établie";
+                buttonConnexion.Text = @"Se déconnecter";
+            }
+            else
+            {
+                labelConnexion.Text = @"Non connecté";
+                buttonConnexion.Text = @"Se connecter";
+            }
+        }
+
+        private void buttonConnexion_Click(object sender, System.EventArgs e)
+        {
+            if (Ssh.IsConnected)
+            {
+                Ssh.Disconnect(ChangeEtatConnection);
+            }
+            else
+            {
+                Ssh.Connect(ChangeEtatConnection);
+            }
         }
     }
 }

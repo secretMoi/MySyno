@@ -11,11 +11,15 @@ namespace MySyno
         private string host;
         private int port;
 
+        private bool _disposed;
+
         private readonly SshClient client;
         private static readonly Mutex VerrouMutex = new Mutex();
 
         // Declare the event using EventHandler<T>
         public event EventHandler<CommandEventArgs> CommandeEvent;
+        public event EventHandler<CommandEventArgs> ConnectEvent;
+        public event EventHandler<CommandEventArgs> DisconnectEvent;
 
 
         public SSH(string host, string user, string password, int port = 22)
@@ -26,27 +30,38 @@ namespace MySyno
             this.port = port;
 
             client = new SshClient(host, port, user, password);
+
+            _disposed = false;
         }
 
-        public void Connect()
+        public void Connect(EventHandler<CommandEventArgs> resultat = null)
         {
+            if (resultat != null)
+                ConnectEvent += resultat;
+
             Thread threadConnect = new Thread(ThreadConnect);
             threadConnect.Start();
         }
 
         private void ThreadConnect()
         {
-            if (client.IsConnected) return;
+            if(!_disposed)
+                if (client.IsConnected) return;
 
             VerrouMutex.WaitOne();
 
             client.Connect();
 
+            Connect_Event(new CommandEventArgs(null));
+
             VerrouMutex.ReleaseMutex();
         }
 
-        public void Disconnect()
+        public void Disconnect(EventHandler<CommandEventArgs> resultat = null)
         {
+            if (resultat != null)
+                DisconnectEvent += resultat;
+
             Thread threadClose = new Thread(Close);
             threadClose.Start();
         }
@@ -64,7 +79,7 @@ namespace MySyno
         {
             VerrouMutex.WaitOne();
 
-            if (client != null)
+            if (client != null && !_disposed)
             {
                 if (client.IsConnected)
                 {
@@ -83,12 +98,19 @@ namespace MySyno
         {
             VerrouMutex.WaitOne();
 
-            if (client.IsConnected)
+            if (!_disposed && client.IsConnected)
                 client.Disconnect();
 
-            client.Dispose();
+            Disconnect_Event(new CommandEventArgs(null));
 
             VerrouMutex.ReleaseMutex();
+        }
+
+        public void Dispose()
+        {
+            client.Dispose();
+
+            _disposed = true;
         }
 
         private void Commande_Event(CommandEventArgs e)
@@ -96,6 +118,20 @@ namespace MySyno
             // invoke la fonction de retour
             CommandeEvent?.Invoke(this, e);
         }
+
+        private void Connect_Event(CommandEventArgs e)
+        {
+            // invoke la fonction de retour
+            ConnectEvent?.Invoke(this, e);
+        }
+
+        private void Disconnect_Event(CommandEventArgs e)
+        {
+            // invoke la fonction de retour
+            DisconnectEvent?.Invoke(this, e);
+        }
+
+        public bool IsConnected => !_disposed && client.IsConnected;
     }
 
     // class qui permet de transmettre les arguments

@@ -29,100 +29,50 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.menu = new System.Windows.Forms.MenuStrip();
-            this.applicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuApplications_UtilisationDisque = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuApplications_RepartitionGourmande = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonClose = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.menu_Disques_Utilisation = new System.Windows.Forms.Button();
+            this.menuFlatButtonClose = new MySyno.Controls.Buttons.MenuFlatButton();
+            this.menu_Disques_Utilisation = new MySyno.Controls.Buttons.MenuFlatButton();
+            this.menu_Accueil = new MySyno.Controls.Buttons.MenuFlatButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.menu.SuspendLayout();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.pictureBoxReduce = new System.Windows.Forms.PictureBox();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
-            // 
-            // menu
-            // 
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.applicationsToolStripMenuItem});
-            this.menu.Location = new System.Drawing.Point(0, 0);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1072, 24);
-            this.menu.TabIndex = 2;
-            this.menu.Text = "menuStrip1";
-            // 
-            // applicationsToolStripMenuItem
-            // 
-            this.applicationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuApplications_UtilisationDisque,
-            this.menuApplications_RepartitionGourmande});
-            this.applicationsToolStripMenuItem.Name = "applicationsToolStripMenuItem";
-            this.applicationsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-            this.applicationsToolStripMenuItem.Text = "Applications";
-            // 
-            // menuApplications_UtilisationDisque
-            // 
-            this.menuApplications_UtilisationDisque.Name = "menuApplications_UtilisationDisque";
-            this.menuApplications_UtilisationDisque.Size = new System.Drawing.Size(209, 22);
-            this.menuApplications_UtilisationDisque.Text = "Utilisation des disques";
-            this.menuApplications_UtilisationDisque.Click += new System.EventHandler(this.Menu_Click);
-            // 
-            // menuApplications_RepartitionGourmande
-            // 
-            this.menuApplications_RepartitionGourmande.Name = "menuApplications_RepartitionGourmande";
-            this.menuApplications_RepartitionGourmande.Size = new System.Drawing.Size(209, 22);
-            this.menuApplications_RepartitionGourmande.Text = "Répartition espace disque";
-            this.menuApplications_RepartitionGourmande.Click += new System.EventHandler(this.Menu_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(101)))), ((int)(((byte)(193)))));
-            this.panel1.Controls.Add(this.buttonClose);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.menuFlatButtonClose);
             this.panel1.Controls.Add(this.menu_Disques_Utilisation);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Controls.Add(this.menu_Accueil);
+            this.panel1.Location = new System.Drawing.Point(0, 93);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(275, 600);
             this.panel1.TabIndex = 3;
             // 
-            // buttonClose
+            // menuFlatButtonClose
             // 
-            this.buttonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.buttonClose.FlatAppearance.BorderSize = 0;
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.ForeColor = System.Drawing.Color.White;
-            this.buttonClose.Image = ((System.Drawing.Image)(resources.GetObject("buttonClose.Image")));
-            this.buttonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonClose.Location = new System.Drawing.Point(0, 525);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(275, 75);
-            this.buttonClose.TabIndex = 3;
-            this.buttonClose.Text = "   Quitter";
-            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonClose.UseVisualStyleBackColor = false;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 198);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(275, 66);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "   Répartition espace disque";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = false;
+            this.menuFlatButtonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.menuFlatButtonClose.FlatAppearance.BorderSize = 0;
+            this.menuFlatButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menuFlatButtonClose.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuFlatButtonClose.ForeColor = System.Drawing.Color.White;
+            this.menuFlatButtonClose.Image = ((System.Drawing.Image)(resources.GetObject("menuFlatButtonClose.Image")));
+            this.menuFlatButtonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.menuFlatButtonClose.Location = new System.Drawing.Point(0, 527);
+            this.menuFlatButtonClose.Name = "menuFlatButtonClose";
+            this.menuFlatButtonClose.Size = new System.Drawing.Size(275, 70);
+            this.menuFlatButtonClose.TabIndex = 7;
+            this.menuFlatButtonClose.Text = "   Quitter";
+            this.menuFlatButtonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.menuFlatButtonClose.UseVisualStyleBackColor = false;
+            this.menuFlatButtonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // menu_Disques_Utilisation
             // 
@@ -133,19 +83,37 @@
             this.menu_Disques_Utilisation.ForeColor = System.Drawing.Color.White;
             this.menu_Disques_Utilisation.Image = ((System.Drawing.Image)(resources.GetObject("menu_Disques_Utilisation.Image")));
             this.menu_Disques_Utilisation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.menu_Disques_Utilisation.Location = new System.Drawing.Point(0, 136);
+            this.menu_Disques_Utilisation.Location = new System.Drawing.Point(0, 63);
             this.menu_Disques_Utilisation.Name = "menu_Disques_Utilisation";
-            this.menu_Disques_Utilisation.Size = new System.Drawing.Size(275, 66);
-            this.menu_Disques_Utilisation.TabIndex = 1;
+            this.menu_Disques_Utilisation.Size = new System.Drawing.Size(275, 70);
+            this.menu_Disques_Utilisation.TabIndex = 6;
             this.menu_Disques_Utilisation.Text = "   Utilisation des disques";
             this.menu_Disques_Utilisation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.menu_Disques_Utilisation.UseVisualStyleBackColor = false;
             this.menu_Disques_Utilisation.Click += new System.EventHandler(this.Menu_Click);
             // 
+            // menu_Accueil
+            // 
+            this.menu_Accueil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.menu_Accueil.FlatAppearance.BorderSize = 0;
+            this.menu_Accueil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menu_Accueil.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menu_Accueil.ForeColor = System.Drawing.Color.White;
+            this.menu_Accueil.Image = ((System.Drawing.Image)(resources.GetObject("menu_Accueil.Image")));
+            this.menu_Accueil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.menu_Accueil.Location = new System.Drawing.Point(-3, -7);
+            this.menu_Accueil.Name = "menu_Accueil";
+            this.menu_Accueil.Size = new System.Drawing.Size(275, 70);
+            this.menu_Accueil.TabIndex = 5;
+            this.menu_Accueil.Text = "   Accueil";
+            this.menu_Accueil.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.menu_Accueil.UseVisualStyleBackColor = false;
+            this.menu_Accueil.Click += new System.EventHandler(this.Menu_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(47, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(49, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(185, 88);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -154,46 +122,79 @@
             // 
             // panelContainer
             // 
-            this.panelContainer.Location = new System.Drawing.Point(272, 24);
+            this.panelContainer.Location = new System.Drawing.Point(272, 93);
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(800, 600);
             this.panelContainer.TabIndex = 4;
+            // 
+            // panelHeader
+            // 
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(101)))), ((int)(((byte)(193)))));
+            this.panelHeader.Controls.Add(this.pictureBoxReduce);
+            this.panelHeader.Controls.Add(this.pictureBoxClose);
+            this.panelHeader.Controls.Add(this.pictureBox1);
+            this.panelHeader.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelHeader.Location = new System.Drawing.Point(0, -1);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1072, 94);
+            this.panelHeader.TabIndex = 5;
+            this.panelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelHeader_MouseMove);
+            // 
+            // pictureBoxReduce
+            // 
+            this.pictureBoxReduce.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxReduce.Image")));
+            this.pictureBoxReduce.Location = new System.Drawing.Point(926, 13);
+            this.pictureBoxReduce.Name = "pictureBoxReduce";
+            this.pictureBoxReduce.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxReduce.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxReduce.TabIndex = 1;
+            this.pictureBoxReduce.TabStop = false;
+            this.pictureBoxReduce.Click += new System.EventHandler(this.pictureBoxReduce_Click);
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
+            this.pictureBoxClose.Location = new System.Drawing.Point(996, 13);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 0;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1072, 624);
+            this.ClientSize = new System.Drawing.Size(1072, 693);
+            this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menu);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MainMenuStrip = this.menu;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.menu.ResumeLayout(false);
-            this.menu.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.MenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem applicationsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuApplications_UtilisationDisque;
-        private System.Windows.Forms.ToolStripMenuItem menuApplications_RepartitionGourmande;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button menu_Disques_Utilisation;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelContainer;
-        private System.Windows.Forms.Button buttonClose;
+        private Controls.Buttons.MenuFlatButton menu_Disques_Utilisation;
+        private Controls.Buttons.MenuFlatButton menu_Accueil;
+        private Controls.Buttons.MenuFlatButton menuFlatButtonClose;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.PictureBox pictureBoxClose;
+        private System.Windows.Forms.PictureBox pictureBoxReduce;
     }
 }
 

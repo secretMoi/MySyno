@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelConnexion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.buttonConnexion = new System.Windows.Forms.Button();
+            this.buttonConnexion = new MySyno.Controls.Buttons.FlatButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +44,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
             this.panel1.Controls.Add(this.buttonConnexion);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.labelConnexion);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -52,16 +52,16 @@
             this.panel1.Size = new System.Drawing.Size(800, 220);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // labelConnexion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(187, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(250, 37);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Connexion établie";
+            this.labelConnexion.AutoSize = true;
+            this.labelConnexion.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelConnexion.ForeColor = System.Drawing.Color.White;
+            this.labelConnexion.Location = new System.Drawing.Point(187, 61);
+            this.labelConnexion.Name = "labelConnexion";
+            this.labelConnexion.Size = new System.Drawing.Size(250, 37);
+            this.labelConnexion.TabIndex = 1;
+            this.labelConnexion.Text = "Connexion établie";
             // 
             // pictureBox1
             // 
@@ -131,14 +131,13 @@
             this.buttonConnexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonConnexion.Font = new System.Drawing.Font("Yu Gothic UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonConnexion.ForeColor = System.Drawing.Color.White;
-            this.buttonConnexion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonConnexion.Location = new System.Drawing.Point(488, 119);
+            this.buttonConnexion.Location = new System.Drawing.Point(514, 127);
             this.buttonConnexion.Name = "buttonConnexion";
-            this.buttonConnexion.Size = new System.Drawing.Size(193, 70);
-            this.buttonConnexion.TabIndex = 3;
-            this.buttonConnexion.Text = "Se connecter";
-            this.buttonConnexion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.buttonConnexion.Size = new System.Drawing.Size(239, 63);
+            this.buttonConnexion.TabIndex = 2;
+            this.buttonConnexion.Text = "flatButton1";
             this.buttonConnexion.UseVisualStyleBackColor = false;
+            this.buttonConnexion.Click += new System.EventHandler(this.buttonConnexion_Click);
             // 
             // Accueil
             // 
@@ -149,7 +148,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Name = "Accueil";
-            this.Size = new System.Drawing.Size(800, 600);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -162,9 +160,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelConnexion;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button buttonConnexion;
+        private Controls.Buttons.FlatButton buttonConnexion;
     }
 }

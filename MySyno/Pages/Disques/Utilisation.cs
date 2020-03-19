@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using MySyno.Controls;
-using MySyno.Fenetres;
 
 namespace MySyno.Pages.Disques
 {
