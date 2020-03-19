@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelMenu = new System.Windows.Forms.Panel();
             this.menuFlatButtonClose = new MySyno.Controls.Buttons.MenuFlatButton();
             this.menu_Disques_Utilisation = new MySyno.Controls.Buttons.MenuFlatButton();
             this.menu_Accueil = new MySyno.Controls.Buttons.MenuFlatButton();
@@ -38,34 +38,36 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.pictureBoxReduce = new System.Windows.Forms.PictureBox();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
+            this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelMenu
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(101)))), ((int)(((byte)(193)))));
-            this.panel1.Controls.Add(this.menuFlatButtonClose);
-            this.panel1.Controls.Add(this.menu_Disques_Utilisation);
-            this.panel1.Controls.Add(this.menu_Accueil);
-            this.panel1.Location = new System.Drawing.Point(0, 93);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(275, 600);
-            this.panel1.TabIndex = 3;
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(101)))), ((int)(((byte)(193)))));
+            this.panelMenu.Controls.Add(this.menuFlatButtonClose);
+            this.panelMenu.Controls.Add(this.menu_Disques_Utilisation);
+            this.panelMenu.Controls.Add(this.menu_Accueil);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Location = new System.Drawing.Point(0, 94);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(275, 599);
+            this.panelMenu.TabIndex = 3;
             // 
             // menuFlatButtonClose
             // 
             this.menuFlatButtonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.menuFlatButtonClose.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuFlatButtonClose.FlatAppearance.BorderSize = 0;
             this.menuFlatButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.menuFlatButtonClose.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuFlatButtonClose.ForeColor = System.Drawing.Color.White;
             this.menuFlatButtonClose.Image = ((System.Drawing.Image)(resources.GetObject("menuFlatButtonClose.Image")));
             this.menuFlatButtonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.menuFlatButtonClose.Location = new System.Drawing.Point(0, 527);
+            this.menuFlatButtonClose.Location = new System.Drawing.Point(0, 529);
             this.menuFlatButtonClose.Name = "menuFlatButtonClose";
             this.menuFlatButtonClose.Size = new System.Drawing.Size(275, 70);
             this.menuFlatButtonClose.TabIndex = 7;
@@ -83,7 +85,7 @@
             this.menu_Disques_Utilisation.ForeColor = System.Drawing.Color.White;
             this.menu_Disques_Utilisation.Image = ((System.Drawing.Image)(resources.GetObject("menu_Disques_Utilisation.Image")));
             this.menu_Disques_Utilisation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.menu_Disques_Utilisation.Location = new System.Drawing.Point(0, 63);
+            this.menu_Disques_Utilisation.Location = new System.Drawing.Point(0, 70);
             this.menu_Disques_Utilisation.Name = "menu_Disques_Utilisation";
             this.menu_Disques_Utilisation.Size = new System.Drawing.Size(275, 70);
             this.menu_Disques_Utilisation.TabIndex = 6;
@@ -101,7 +103,7 @@
             this.menu_Accueil.ForeColor = System.Drawing.Color.White;
             this.menu_Accueil.Image = ((System.Drawing.Image)(resources.GetObject("menu_Accueil.Image")));
             this.menu_Accueil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.menu_Accueil.Location = new System.Drawing.Point(-3, -7);
+            this.menu_Accueil.Location = new System.Drawing.Point(-3, 0);
             this.menu_Accueil.Name = "menu_Accueil";
             this.menu_Accueil.Size = new System.Drawing.Size(275, 70);
             this.menu_Accueil.TabIndex = 5;
@@ -133,8 +135,9 @@
             this.panelHeader.Controls.Add(this.pictureBoxReduce);
             this.panelHeader.Controls.Add(this.pictureBoxClose);
             this.panelHeader.Controls.Add(this.pictureBox1);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelHeader.Location = new System.Drawing.Point(0, -1);
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1072, 94);
             this.panelHeader.TabIndex = 5;
@@ -143,9 +146,9 @@
             // pictureBoxReduce
             // 
             this.pictureBoxReduce.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxReduce.Image")));
-            this.pictureBoxReduce.Location = new System.Drawing.Point(926, 13);
+            this.pictureBoxReduce.Location = new System.Drawing.Point(942, 23);
             this.pictureBoxReduce.Name = "pictureBoxReduce";
-            this.pictureBoxReduce.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxReduce.Size = new System.Drawing.Size(48, 48);
             this.pictureBoxReduce.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxReduce.TabIndex = 1;
             this.pictureBoxReduce.TabStop = false;
@@ -154,9 +157,9 @@
             // pictureBoxClose
             // 
             this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(996, 13);
+            this.pictureBoxClose.Location = new System.Drawing.Point(1012, 23);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxClose.Size = new System.Drawing.Size(48, 48);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxClose.TabIndex = 0;
             this.pictureBoxClose.TabStop = false;
@@ -167,16 +170,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1072, 693);
+            this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelContainer);
-            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.panel1.ResumeLayout(false);
+            this.panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).EndInit();
@@ -186,7 +189,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelContainer;
         private Controls.Buttons.MenuFlatButton menu_Disques_Utilisation;
