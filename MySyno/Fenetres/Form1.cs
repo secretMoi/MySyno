@@ -19,6 +19,33 @@ namespace MySyno.Fenetres
             accueil.Dock = DockStyle.Fill;
 
             panelContainer.Controls.Add(accueil);
+
+            SetSubMenus();
+        }
+
+        private void SetSubMenus()
+        {
+            panelSousMenuDisques.Visible = false;
+        }
+
+        private void HideSubMenu()
+        {
+            if (panelSousMenuDisques.Visible)
+                panelSousMenuDisques.Visible = false;
+        }
+
+        private void ShowSubMenu(Panel subMenu)
+        {
+            if (!subMenu.Visible)
+            {
+                HideSubMenu(); // cache les autres sous-menus
+                subMenu.Visible = true; // affiche le sous-menu désiré
+            }
+            else
+            {
+                subMenu.Visible = false; // ferme ce sous-menu si il était déjà visible
+            }
+                
         }
 
         private void Menu_Click(object sender, EventArgs e)
@@ -28,15 +55,21 @@ namespace MySyno.Fenetres
 
             string @namespace, @class;
 
-            if (chaine.Length == 3)
+            if (chaine.Length == 3) // si c'est un bouton de sous-menu
             {
                 @namespace = "MySyno.Pages." + chaine[1];
                 @class = chaine[2];
+                //HideSubMenu(); // cache les sous-menu
             }
-            else
+            else // si c'est un bouton de menu
             {
                 @namespace = "MySyno.Pages";
                 @class = chaine[1];
+
+                // trouve le panel correspondant
+                Control[] panel = Controls.Find("PanelSousMenu" + chaine[1], true);
+                if(panel.Length > 0) // si un panel existe
+                    ShowSubMenu((Panel)panel[0]);
             }
 
             Type typeClasse = Type.GetType($"{@namespace}.{@class}"); // trouve la classe
@@ -62,23 +95,6 @@ namespace MySyno.Fenetres
         private void pictureBoxReduce_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
-        }
-
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                // Release the mouse capture started by the mouse down.
-                Capture = false;
-
-                // Create and send a WM_NCLBUTTONDOWN message.
-                const int WM_NCLBUTTONDOWN = 0x00A1;
-                const int HTCAPTION = 2;
-                Message msg =
-                    Message.Create(this.Handle, WM_NCLBUTTONDOWN,
-                        new IntPtr(HTCAPTION), IntPtr.Zero);
-                this.DefWndProc(ref msg);
-            }
         }
 
         private void panelHeader_MouseMove(object sender, MouseEventArgs e)
