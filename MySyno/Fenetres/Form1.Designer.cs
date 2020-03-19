@@ -31,22 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.menuFlatButtonClose = new MySyno.Controls.Buttons.MenuFlatButton();
+            this.panelSousMenuDisques = new System.Windows.Forms.Panel();
+            this.menuFlatButton2 = new MySyno.Controls.Buttons.MenuFlatButton();
+            this.menu_Disques_Utilisation = new MySyno.Controls.Buttons.MenuFlatButton();
             this.menu_Disques = new MySyno.Controls.Buttons.MenuFlatButton();
             this.menu_Accueil = new MySyno.Controls.Buttons.MenuFlatButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.pictureBoxResize = new System.Windows.Forms.PictureBox();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.pictureBoxReduce = new System.Windows.Forms.PictureBox();
             this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-            this.panelSousMenuDisques = new System.Windows.Forms.Panel();
-            this.menu_Disques_Utilisation = new MySyno.Controls.Buttons.MenuFlatButton();
-            this.menuFlatButton2 = new MySyno.Controls.Buttons.MenuFlatButton();
             this.panelMenu.SuspendLayout();
+            this.panelSousMenuDisques.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).BeginInit();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-            this.panelSousMenuDisques.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -78,8 +81,53 @@
             this.menuFlatButtonClose.Size = new System.Drawing.Size(275, 70);
             this.menuFlatButtonClose.TabIndex = 7;
             this.menuFlatButtonClose.Text = "   Quitter";
+            this.menuFlatButtonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.menuFlatButtonClose.UseVisualStyleBackColor = false;
             this.menuFlatButtonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // panelSousMenuDisques
+            // 
+            this.panelSousMenuDisques.Controls.Add(this.menuFlatButton2);
+            this.panelSousMenuDisques.Controls.Add(this.menu_Disques_Utilisation);
+            this.panelSousMenuDisques.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSousMenuDisques.Location = new System.Drawing.Point(0, 140);
+            this.panelSousMenuDisques.Name = "panelSousMenuDisques";
+            this.panelSousMenuDisques.Size = new System.Drawing.Size(275, 141);
+            this.panelSousMenuDisques.TabIndex = 8;
+            // 
+            // menuFlatButton2
+            // 
+            this.menuFlatButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+            this.menuFlatButton2.FlatAppearance.BorderSize = 0;
+            this.menuFlatButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menuFlatButton2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuFlatButton2.ForeColor = System.Drawing.Color.White;
+            this.menuFlatButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.menuFlatButton2.Location = new System.Drawing.Point(0, 70);
+            this.menuFlatButton2.Name = "menuFlatButton2";
+            this.menuFlatButton2.Size = new System.Drawing.Size(275, 70);
+            this.menuFlatButton2.TabIndex = 1;
+            this.menuFlatButton2.Text = "menuFlatButton2";
+            this.menuFlatButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.menuFlatButton2.UseVisualStyleBackColor = false;
+            // 
+            // menu_Disques_Utilisation
+            // 
+            this.menu_Disques_Utilisation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+            this.menu_Disques_Utilisation.FlatAppearance.BorderSize = 0;
+            this.menu_Disques_Utilisation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menu_Disques_Utilisation.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menu_Disques_Utilisation.ForeColor = System.Drawing.Color.White;
+            this.menu_Disques_Utilisation.Image = ((System.Drawing.Image)(resources.GetObject("menu_Disques_Utilisation.Image")));
+            this.menu_Disques_Utilisation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.menu_Disques_Utilisation.Location = new System.Drawing.Point(0, 0);
+            this.menu_Disques_Utilisation.Name = "menu_Disques_Utilisation";
+            this.menu_Disques_Utilisation.Size = new System.Drawing.Size(275, 70);
+            this.menu_Disques_Utilisation.TabIndex = 0;
+            this.menu_Disques_Utilisation.Text = "   Utilisation des disques";
+            this.menu_Disques_Utilisation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.menu_Disques_Utilisation.UseVisualStyleBackColor = false;
+            this.menu_Disques_Utilisation.Click += new System.EventHandler(this.Menu_Click);
             // 
             // menu_Disques
             // 
@@ -96,6 +144,7 @@
             this.menu_Disques.Size = new System.Drawing.Size(275, 70);
             this.menu_Disques.TabIndex = 6;
             this.menu_Disques.Text = "   Disques";
+            this.menu_Disques.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.menu_Disques.UseVisualStyleBackColor = false;
             this.menu_Disques.Click += new System.EventHandler(this.Menu_Click);
             // 
@@ -114,6 +163,7 @@
             this.menu_Accueil.Size = new System.Drawing.Size(275, 70);
             this.menu_Accueil.TabIndex = 5;
             this.menu_Accueil.Text = "   Accueil";
+            this.menu_Accueil.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.menu_Accueil.UseVisualStyleBackColor = false;
             this.menu_Accueil.Click += new System.EventHandler(this.Menu_Click);
             // 
@@ -130,10 +180,25 @@
             // panelContainer
             // 
             this.panelContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContainer.Controls.Add(this.pictureBoxResize);
             this.panelContainer.Location = new System.Drawing.Point(272, 93);
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(800, 600);
             this.panelContainer.TabIndex = 4;
+            // 
+            // pictureBoxResize
+            // 
+            this.pictureBoxResize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxResize.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxResize.Image")));
+            this.pictureBoxResize.Location = new System.Drawing.Point(776, 576);
+            this.pictureBoxResize.Name = "pictureBoxResize";
+            this.pictureBoxResize.Size = new System.Drawing.Size(24, 24);
+            this.pictureBoxResize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxResize.TabIndex = 2;
+            this.pictureBoxResize.TabStop = false;
+            this.pictureBoxResize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxResize_MouseDown);
+            this.pictureBoxResize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxResize_MouseMove);
+            this.pictureBoxResize.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxResize_MouseUp);
             // 
             // panelHeader
             // 
@@ -173,50 +238,6 @@
             this.pictureBoxClose.TabStop = false;
             this.pictureBoxClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // panelSousMenuDisques
-            // 
-            this.panelSousMenuDisques.Controls.Add(this.menuFlatButton2);
-            this.panelSousMenuDisques.Controls.Add(this.menu_Disques_Utilisation);
-            this.panelSousMenuDisques.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSousMenuDisques.Location = new System.Drawing.Point(0, 140);
-            this.panelSousMenuDisques.Name = "panelSousMenuDisques";
-            this.panelSousMenuDisques.Size = new System.Drawing.Size(275, 141);
-            this.panelSousMenuDisques.TabIndex = 8;
-            // 
-            // menu_Disques_Utilisation
-            // 
-            this.menu_Disques_Utilisation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-            this.menu_Disques_Utilisation.FlatAppearance.BorderSize = 0;
-            this.menu_Disques_Utilisation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.menu_Disques_Utilisation.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menu_Disques_Utilisation.ForeColor = System.Drawing.Color.White;
-            this.menu_Disques_Utilisation.Image = ((System.Drawing.Image)(resources.GetObject("menu_Disques_Utilisation.Image")));
-            this.menu_Disques_Utilisation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.menu_Disques_Utilisation.Location = new System.Drawing.Point(0, 0);
-            this.menu_Disques_Utilisation.Name = "menu_Disques_Utilisation";
-            this.menu_Disques_Utilisation.Size = new System.Drawing.Size(275, 70);
-            this.menu_Disques_Utilisation.TabIndex = 0;
-            this.menu_Disques_Utilisation.Text = "   Utilisation des disques";
-            this.menu_Disques_Utilisation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.menu_Disques_Utilisation.UseVisualStyleBackColor = false;
-            this.menu_Disques_Utilisation.Click += new System.EventHandler(this.Menu_Click);
-            // 
-            // menuFlatButton2
-            // 
-            this.menuFlatButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-            this.menuFlatButton2.FlatAppearance.BorderSize = 0;
-            this.menuFlatButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.menuFlatButton2.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuFlatButton2.ForeColor = System.Drawing.Color.White;
-            this.menuFlatButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.menuFlatButton2.Location = new System.Drawing.Point(0, 70);
-            this.menuFlatButton2.Name = "menuFlatButton2";
-            this.menuFlatButton2.Size = new System.Drawing.Size(275, 70);
-            this.menuFlatButton2.TabIndex = 1;
-            this.menuFlatButton2.Text = "menuFlatButton2";
-            this.menuFlatButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.menuFlatButton2.UseVisualStyleBackColor = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -228,16 +249,19 @@
             this.Controls.Add(this.panelContainer);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(1072, 693);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MySyno";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panelMenu.ResumeLayout(false);
+            this.panelSousMenuDisques.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).EndInit();
             this.panelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-            this.panelSousMenuDisques.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -255,6 +279,7 @@
         private System.Windows.Forms.Panel panelSousMenuDisques;
         private Controls.Buttons.MenuFlatButton menuFlatButton2;
         private Controls.Buttons.MenuFlatButton menu_Disques_Utilisation;
+        private System.Windows.Forms.PictureBox pictureBoxResize;
     }
 }
 

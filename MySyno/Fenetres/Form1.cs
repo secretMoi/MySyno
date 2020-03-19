@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using MySyno.Controls;
 using MySyno.Pages;
@@ -7,6 +8,9 @@ namespace MySyno.Fenetres
 {
     public partial class Form1 : FormSsh
     {
+        private bool isResizing;
+        private Point anciennePositionCurseur;
+        private Size ancienneTailleFenetre;
         public Form1()
         {
             InitializeComponent();
@@ -111,6 +115,27 @@ namespace MySyno.Fenetres
                     Message.Create(this.Handle, WM_NCLBUTTONDOWN,
                         new IntPtr(HTCAPTION), IntPtr.Zero);
                 this.DefWndProc(ref msg);
+            }
+        }
+
+        private void pictureBoxResize_MouseDown(object sender, MouseEventArgs e)
+        {
+            isResizing = true;
+            anciennePositionCurseur = MousePosition;
+            ancienneTailleFenetre = Size;
+        }
+
+        private void pictureBoxResize_MouseUp(object sender, MouseEventArgs e)
+        {
+            isResizing = false;
+        }
+
+        private void pictureBoxResize_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isResizing)
+            {
+                Width = MousePosition.X - anciennePositionCurseur.X + ancienneTailleFenetre.Width;
+                Height = MousePosition.Y - anciennePositionCurseur.Y + ancienneTailleFenetre.Height;
             }
         }
     }
