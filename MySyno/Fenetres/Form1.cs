@@ -22,7 +22,6 @@ namespace MySyno.Fenetres
             ThemePanel.SetConnection(Ssh);
             Accueil accueil = new Accueil();
             Ssh.Connect(accueil.ChangeEtatConnection);
-            accueil.Dock = DockStyle.Fill;
 
             panelContainer.Controls.Add(accueil);
 
@@ -83,7 +82,6 @@ namespace MySyno.Fenetres
 
             if (!(Activator.CreateInstance(typeClasse) is ThemePanel page)) return;
             panelContainer.Controls.Clear();
-            page.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(page);
         }
 

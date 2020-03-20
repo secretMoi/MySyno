@@ -8,6 +8,8 @@ namespace MySyno.Controls
         public ThemePanel()
         {
             InitializeComponent();
+
+            Dock = DockStyle.Fill;
         }
 
         public static void SetConnection(SSH ssh)
