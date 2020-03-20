@@ -12,6 +12,7 @@ namespace MySyno.Controls.Buttons
             BackColor = Color.FromArgb(25, 118, 211);
             ImageAlign = ContentAlignment.MiddleLeft;
             Size = new Size(275, 70);
+            Font = new Font("Yu Gothic UI", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
             TextImageRelation = TextImageRelation.ImageBeforeText;
         }
     }

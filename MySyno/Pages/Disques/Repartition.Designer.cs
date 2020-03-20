@@ -1,6 +1,6 @@
 ﻿namespace MySyno.Pages.Disques
 {
-    partial class Utilisation
+    partial class Repartition
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.graphicRepartition = new MySyno.Controls.GraphicRepartition();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel
+            // graphicRepartition
             // 
-            this.flowLayoutPanel.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flowLayoutPanel.Location = new System.Drawing.Point(3, 135);
-            this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 100);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(797, 465);
-            this.flowLayoutPanel.TabIndex = 1;
+            this.graphicRepartition.BackColor = System.Drawing.Color.White;
+            this.graphicRepartition.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphicRepartition.Location = new System.Drawing.Point(0, 220);
+            this.graphicRepartition.Name = "graphicRepartition";
+            this.graphicRepartition.Size = new System.Drawing.Size(3776, 1753);
+            this.graphicRepartition.TabIndex = 0;
             // 
             // panel1
             // 
@@ -47,15 +47,15 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(3776, 135);
-            this.panel1.TabIndex = 2;
+            this.panel1.Size = new System.Drawing.Size(3776, 220);
+            this.panel1.TabIndex = 1;
             // 
-            // Utilisation
+            // Repartition
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.graphicRepartition);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.flowLayoutPanel);
-            this.Name = "Utilisation";
+            this.Name = "Repartition";
             this.Size = new System.Drawing.Size(3776, 1973);
             this.ResumeLayout(false);
 
@@ -63,7 +63,7 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+        private Controls.GraphicRepartition graphicRepartition;
         private System.Windows.Forms.Panel panel1;
     }
 }

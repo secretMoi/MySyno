@@ -76,6 +76,19 @@
     <Compile Include="Controls\Buttons\MenuFlatButton.Designer.cs">
       <DependentUpon>MenuFlatButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ElementGraphic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ElementGraphic.Designer.cs">
+      <DependentUpon>ElementGraphic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GraphicRepartition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GraphicRepartition.Designer.cs">
+      <DependentUpon>GraphicRepartition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Figures\Texte.cs" />
     <Compile Include="Pages\Accueil.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,11 +128,11 @@
     <Compile Include="Fenetres\FormSsh.Designer.cs">
       <DependentUpon>FormSsh.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fenetres\repartitionGourmande.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Pages\Disques\Repartition.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fenetres\repartitionGourmande.Designer.cs">
-      <DependentUpon>repartitionGourmande.cs</DependentUpon>
+    <Compile Include="Pages\Disques\Repartition.Designer.cs">
+      <DependentUpon>Repartition.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\Disques\Utilisation.cs">
       <SubType>UserControl</SubType>
@@ -132,12 +145,12 @@
     <Compile Include="Core\Figures\Rectangle.cs" />
     <Compile Include="Core\Figures\Rotation.cs" />
     <Compile Include="SSH.cs" />
-    <Compile Include="Fenetres\UtilisationDisque.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Fenetres\UtilisationDisque.Designer.cs">
-      <DependentUpon>UtilisationDisque.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Controls\ElementGraphic.resx">
+      <DependentUpon>ElementGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GraphicRepartition.resx">
+      <DependentUpon>GraphicRepartition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,8 +163,8 @@
     <EmbeddedResource Include="Fenetres\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fenetres\UtilisationDisque.resx">
-      <DependentUpon>UtilisationDisque.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\Disques\Repartition.resx">
+      <DependentUpon>Repartition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Disques\Utilisation.resx">
       <DependentUpon>Utilisation.cs</DependentUpon>
@@ -164,6 +177,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -210,6 +224,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Ressources\Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\Images\minus.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
