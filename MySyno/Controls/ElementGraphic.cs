@@ -105,16 +105,22 @@ namespace MySyno.Controls
             elements.Add(cle, new Arc(position, dimensions, contour, largeurContour, angleDebut, amplitude));
         }
 
-        protected void AjouterTexte(string cle, string texte, Color remplissage, string police = "Yu Gothic UI")
+        protected void AjouterTexte(string cle, string texte, Color remplissage, FontStyle style = default, string police = "Yu Gothic UI")
         {
             if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new Texte(texte, position, remplissage, dimensions.Xf, police));
+            elements.Add(cle, new Texte(texte, position, remplissage, dimensions.Xf, style, police));
         }
 
         protected void AjouterRectangleArrondi(string cle, int arrondi, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new RectangleArrondi(position, dimensions, arrondi, remplissage, contour, largeurContour));
+        }
+
+        protected void Remove(string cle)
+        {
+            if (!elements.ContainsKey(cle)) return;
+            elements.Remove(cle);
         }
 
         // déplace à une position donnée

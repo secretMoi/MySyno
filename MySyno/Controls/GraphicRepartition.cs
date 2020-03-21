@@ -12,22 +12,25 @@ namespace MySyno.Controls
     {
         private Dictionary<string, float> data;
 
+        private Figure _premiere;
+        private Figure _derniereFigure;
+
         public GraphicRepartition() : base(new Couple(0,0))
         {
             InitializeComponent();
 
             Figure.InitialiseConteneur(pictureBox1);
 
-            data = new Dictionary<string, float>();
-            data.Add("coucoucoucoucoucoucoucou", 100);
-            data.Add("beuhbeuhbeuhbeuh", 50);
-            data.Add("b", 10);
-
-            CreateElement();
+            pictureBox1.MouseWheel += pictureBox1_MouseWheel;
         }
 
-        private void CreateElement()
+        public void CreateElement(Dictionary<string, float> incomingData = null)
         {
+            if(incomingData == null && data == null) return;
+
+            if(incomingData != null)
+                data = incomingData;
+
             int compteur = 0;
 
             float rapport = (Width - 100) / PlusGrandeValeur() * 0.95f;
@@ -53,19 +56,36 @@ namespace MySyno.Controls
                 // CultureInfo.InvariantCulture pour garder les données brutes, les enregistrer dans un fichier par exemple
                 AjouterTexte("Valeur" + element.Key, element.Value.ToString(CultureInfo.CurrentCulture), Color.White);
 
-                compteur++;
+                if (compteur == 0) _premiere = GetFigure("Label" + element.Key);
+                if (compteur == data.Count - 1) _derniereFigure = GetFigure("Label" + element.Key);
+
+                 compteur++;
             }
+
+            pictureBox1.Invalidate();
         }
 
         private float PlusGrandeValeur()
         {
-            float valeurMax = Single.MinValue;
+            float valeurMax = float.MinValue;
 
             foreach (KeyValuePair<string, float> element in data)
                 if (element.Value > valeurMax)
                     valeurMax = element.Value;
 
             return valeurMax;
+        }
+
+        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            int scroll = e.Delta;
+
+            if (_premiere.Position.Y + scroll < 100 && _derniereFigure.Position.Y + scroll > 100)
+            {
+                Deplace(0, scroll);
+            }
+
+            pictureBox1.Invalidate();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -78,6 +98,11 @@ namespace MySyno.Controls
             elements.Clear();
             pictureBox1.Image = null;
             CreateElement();
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox1.Focus();
         }
     }
 }

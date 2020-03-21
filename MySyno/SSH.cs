@@ -50,9 +50,14 @@ namespace MySyno
 
             VerrouMutex.WaitOne();
 
-            client.Connect();
-
-            Connect_Event(new CommandEventArgs(null));
+            try
+            {
+                client.Connect();
+                Connect_Event(new CommandEventArgs(null));
+            }
+            catch
+            {
+            }
 
             VerrouMutex.ReleaseMutex();
         }

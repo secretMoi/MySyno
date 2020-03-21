@@ -1,21 +1,19 @@
 ﻿using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using MySyno.Core;
 using MySyno.Core.Figures;
-using Rectangle = System.Drawing.Rectangle;
 
 namespace MySyno.Controls.Checkbox
 {
     public partial class RoundedCheckbox : ElementGraphic
     {
-        private bool _etat;
         private Color OffColor = Color.FromArgb(238, 83, 79);
         private Color OnColor = Color.FromArgb(76, 176, 80);
         private Color DisqueColor = Color.FromArgb(230, 230, 230);
 
         private int _positionDebut;
         private int _positionFin;
+
+        private const float TailleTexte = 12.5f;
 
         private const int VitesseAnimation = 2;
         public RoundedCheckbox()
@@ -28,6 +26,22 @@ namespace MySyno.Controls.Checkbox
 
             InitialiseCadre();
             InitialiseCercle();
+            TexteOff();
+        }
+
+        private void TexteOff()
+        {
+            Dimensionne(TailleTexte);
+            position.X = elements["Bouton"].Dimension.X - 35;
+            position.Y = elements["Disque"].Position.Y - 2;
+            AjouterTexte("Label", "Off", DisqueColor, FontStyle.Bold);
+        }
+        private void TexteOn()
+        {
+            Dimensionne(TailleTexte);
+            position.X = 5;
+            position.Y = elements["Disque"].Position.Y - 2;
+            AjouterTexte("Label", "On", DisqueColor, FontStyle.Bold);
         }
 
         private void InitialiseCadre()
@@ -54,7 +68,7 @@ namespace MySyno.Controls.Checkbox
 
         private void timerSlide_Tick(object sender, System.EventArgs e)
         {
-            if (_etat)
+            if (State)
             {
                 Deplace("Disque", -VitesseAnimation);
 
@@ -63,7 +77,11 @@ namespace MySyno.Controls.Checkbox
                     elements["Disque"].Position.X = _positionDebut;
                     timerSlide.Stop();
                     GetFigure("Bouton").SetBrosse(OffColor);
-                    _etat = !_etat;
+
+                    Remove("Label");
+                    TexteOff();
+
+                    State = !State;
                 }
             }
             else
@@ -75,7 +93,11 @@ namespace MySyno.Controls.Checkbox
                     elements["Disque"].Position.X = _positionFin;
                     timerSlide.Stop();
                     GetFigure("Bouton").SetBrosse(OnColor);
-                    _etat = !_etat;
+
+                    Remove("Label");
+                    TexteOn();
+
+                    State = !State;
                 }
             }
 
@@ -86,5 +108,7 @@ namespace MySyno.Controls.Checkbox
         {
             timerSlide.Start();
         }
+
+        public bool State { get; set; }
     }
 }
