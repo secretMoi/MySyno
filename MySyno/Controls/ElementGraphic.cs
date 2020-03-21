@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Forms;
 using MySyno.Core;
 using MySyno.Core.Figures;
 using Rectangle = MySyno.Core.Figures.Rectangle;
@@ -19,15 +18,17 @@ namespace MySyno.Controls
         public ElementGraphic()
         {
             InitializeComponent();
+
+            elements = new Dictionary<string, Figure>();
+
+            position = new Couple(0, 0);
+
+            this.zoom = 1;
         }
 
         public ElementGraphic(Couple position) : this()
         {
-            elements = new Dictionary<string, Figure>();
-
             this.position = position.Copie();
-
-            this.zoom = 1;
         }
 
         // change la mise à l'échelle'
@@ -110,6 +111,12 @@ namespace MySyno.Controls
             elements.Add(cle, new Texte(texte, position, remplissage, dimensions.Xf, police));
         }
 
+        protected void AjouterRectangleArrondi(string cle, int arrondi, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
+        {
+            if (elements.ContainsKey(cle)) return;
+            elements.Add(cle, new RectangleArrondi(position, dimensions, arrondi, remplissage, contour, largeurContour));
+        }
+
         // déplace à une position donnée
         public void Deplace(Couple positionDestination)
         {
@@ -133,6 +140,17 @@ namespace MySyno.Controls
 
                 figure?.Deplace(figure.Position.Xi + x, figure.Position.Yi + y);
             }
+        }
+
+        // déplace en translation
+        public void Deplace(string key, int x, int y = 0)
+        {
+            Figure figure = elements[key];
+
+            position.X += x;
+            position.Y += y;
+
+            figure.Deplace(figure.Position.Xi + x, figure.Position.Yi + y);
         }
 
         public List<Figure> ListeElements()

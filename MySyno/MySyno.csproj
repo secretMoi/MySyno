@@ -76,6 +76,12 @@
     <Compile Include="Controls\Buttons\MenuFlatButton.Designer.cs">
       <DependentUpon>MenuFlatButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Checkbox\RoundedCheckbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Checkbox\RoundedCheckbox.Designer.cs">
+      <DependentUpon>RoundedCheckbox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ElementGraphic.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +94,7 @@
     <Compile Include="Controls\GraphicRepartition.Designer.cs">
       <DependentUpon>GraphicRepartition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Figures\RectangleArrondi.cs" />
     <Compile Include="Core\Figures\Texte.cs" />
     <Compile Include="Pages\Accueil.cs">
       <SubType>UserControl</SubType>
@@ -145,6 +152,9 @@
     <Compile Include="Core\Figures\Rectangle.cs" />
     <Compile Include="Core\Figures\Rotation.cs" />
     <Compile Include="SSH.cs" />
+    <EmbeddedResource Include="Controls\Checkbox\RoundedCheckbox.resx">
+      <DependentUpon>RoundedCheckbox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ElementGraphic.resx">
       <DependentUpon>ElementGraphic.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,5 +240,6 @@
   <ItemGroup>
     <None Include="Ressources\Images\minus.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

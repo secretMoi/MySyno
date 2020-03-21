@@ -148,6 +148,11 @@ namespace MySyno.Core.Figures
             return enfants;
         }
 
+        public void SetBrosse(Color nouvelleBrosse)
+        {
+            Remplissage = new SolidBrush(nouvelleBrosse);
+        }
+
         public Couple Dimension => dimension;
 
         public Couple Position

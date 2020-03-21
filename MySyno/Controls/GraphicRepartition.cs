@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using MySyno.Core;
 using MySyno.Core.Figures;
@@ -48,7 +49,9 @@ namespace MySyno.Controls
                 Dimensionne(12.5f);
                 position.X += 7;
                 position.Y -= 1;
-                AjouterTexte("Valeur" + element.Key, element.Value.ToString(), Color.White);
+                // CultureInfo.CurrentCulture pour adapter la chaine à une vue UI
+                // CultureInfo.InvariantCulture pour garder les données brutes, les enregistrer dans un fichier par exemple
+                AjouterTexte("Valeur" + element.Key, element.Value.ToString(CultureInfo.CurrentCulture), Color.White);
 
                 compteur++;
             }

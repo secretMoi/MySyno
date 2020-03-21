@@ -30,6 +30,8 @@
         {
             this.graphicRepartition = new MySyno.Controls.GraphicRepartition();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.roundedCheckbox1 = new MySyno.Controls.Checkbox.RoundedCheckbox();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // graphicRepartition
@@ -38,17 +40,26 @@
             this.graphicRepartition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphicRepartition.Location = new System.Drawing.Point(0, 220);
             this.graphicRepartition.Name = "graphicRepartition";
-            this.graphicRepartition.Size = new System.Drawing.Size(3776, 1753);
+            this.graphicRepartition.Size = new System.Drawing.Size(1856, 1753);
             this.graphicRepartition.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+            this.panel1.Controls.Add(this.roundedCheckbox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(3776, 220);
+            this.panel1.Size = new System.Drawing.Size(1856, 220);
             this.panel1.TabIndex = 1;
+            // 
+            // roundedCheckbox1
+            // 
+            this.roundedCheckbox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+            this.roundedCheckbox1.Location = new System.Drawing.Point(20, 17);
+            this.roundedCheckbox1.Name = "roundedCheckbox1";
+            this.roundedCheckbox1.Size = new System.Drawing.Size(100, 50);
+            this.roundedCheckbox1.TabIndex = 0;
             // 
             // Repartition
             // 
@@ -56,7 +67,8 @@
             this.Controls.Add(this.graphicRepartition);
             this.Controls.Add(this.panel1);
             this.Name = "Repartition";
-            this.Size = new System.Drawing.Size(3776, 1973);
+            this.Size = new System.Drawing.Size(1856, 1973);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -65,5 +77,6 @@
 
         private Controls.GraphicRepartition graphicRepartition;
         private System.Windows.Forms.Panel panel1;
+        private Controls.Checkbox.RoundedCheckbox roundedCheckbox1;
     }
 }
