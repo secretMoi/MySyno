@@ -11,6 +11,7 @@ namespace MySyno.Fenetres
         private bool _isResizing;
         private Point _anciennePositionCurseur;
         private Size _ancienneTailleFenetre;
+
         private Panel _subMenuPanelToHide;
         private Panel _subMenuPanelToShow;
         public Form1()
@@ -168,27 +169,11 @@ namespace MySyno.Fenetres
 
         private void pictureBoxClose_MouseEnter(object sender, EventArgs e)
         {
-            /*int nouvelleTaille = 48;
-            Size ancienneTaille = pictureBoxClose.Size;
-            Point nouvellePosition = new Point(
-                pictureBoxClose.Location.X - Math.Abs(nouvelleTaille - ancienneTaille.Width) / 2,
-                pictureBoxClose.Location.Y - Math.Abs(nouvelleTaille - ancienneTaille.Height) / 2
-            );
-            pictureBoxClose.Location = nouvellePosition;
-            pictureBoxClose.Size = new Size(nouvelleTaille, nouvelleTaille);*/
             Zoom(pictureBoxClose, 48);
         }
 
         private void pictureBoxClose_MouseLeave(object sender, EventArgs e)
         {
-            /*int nouvelleTaille = 32;
-            Size ancienneTaille = pictureBoxClose.Size;
-            Point nouvellePosition = new Point(
-                pictureBoxClose.Location.X + Math.Abs(nouvelleTaille - ancienneTaille.Width) / 2,
-                pictureBoxClose.Location.Y + Math.Abs(nouvelleTaille - ancienneTaille.Height) / 2
-            );
-            pictureBoxClose.Location = nouvellePosition;
-            pictureBoxClose.Size = new Size(nouvelleTaille, nouvelleTaille);*/
             Zoom(pictureBoxClose, 32);
         }
 

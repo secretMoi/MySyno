@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.roundedCheckbox1 = new MySyno.Controls.Checkbox.RoundedCheckbox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.flatListBox1 = new MySyno.Controls.FlatListBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,10 +58,12 @@
             // 
             // roundedCheckbox1
             // 
+            this.roundedCheckbox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.roundedCheckbox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
             this.roundedCheckbox1.Location = new System.Drawing.Point(20, 17);
             this.roundedCheckbox1.Name = "roundedCheckbox1";
             this.roundedCheckbox1.Size = new System.Drawing.Size(100, 50);
+            this.roundedCheckbox1.State = false;
             this.roundedCheckbox1.TabIndex = 0;
             // 
             // panel2
@@ -72,9 +75,20 @@
             this.panel2.Size = new System.Drawing.Size(3776, 1753);
             this.panel2.TabIndex = 2;
             // 
+            // flatListBox1
+            // 
+            this.flatListBox1.AutoSize = true;
+            this.flatListBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flatListBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+            this.flatListBox1.Location = new System.Drawing.Point(523, 24);
+            this.flatListBox1.Name = "flatListBox1";
+            this.flatListBox1.Size = new System.Drawing.Size(153, 43);
+            this.flatListBox1.TabIndex = 15;
+            // 
             // Repartition
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.flatListBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Repartition";
@@ -82,6 +96,7 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -91,5 +106,6 @@
         private System.Windows.Forms.Panel panel1;
         private Controls.Checkbox.RoundedCheckbox roundedCheckbox1;
         private System.Windows.Forms.Panel panel2;
+        private Controls.FlatListBox flatListBox1;
     }
 }

@@ -1,0 +1,7 @@
+﻿namespace MySyno
+{
+    class ParseCommandDf
+    {
+
+    }
+}

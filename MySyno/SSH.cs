@@ -21,7 +21,6 @@ namespace MySyno
         public event EventHandler<CommandEventArgs> ConnectEvent;
         public event EventHandler<CommandEventArgs> DisconnectEvent;
 
-
         public SSH(string host, string user, string password, int port = 22)
         {
             this.user = user;
@@ -71,16 +70,16 @@ namespace MySyno
             threadClose.Start();
         }
 
-        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat = null)
+        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat = null, int id = 0)
         {
             if(resultat != null)
                 CommandeEvent += resultat;
 
-            Thread t = new Thread(() => RunCommand(commande));
+            Thread t = new Thread(() => RunCommand(commande, id));
             t.Start();
         }
 
-        private void RunCommand(string commande)
+        private void RunCommand(string commande, int id)
         {
             VerrouMutex.WaitOne();
 
@@ -92,7 +91,7 @@ namespace MySyno
                     sc.Execute();
                     string resultat = sc.Result;
 
-                    Commande_Event(new CommandEventArgs(resultat));
+                    Commande_Event(new CommandEventArgs(resultat, id));
                 }
             }
             
@@ -142,10 +141,13 @@ namespace MySyno
     // class qui permet de transmettre les arguments
     public class CommandEventArgs : EventArgs
     {
-        public CommandEventArgs(string s)
+        public CommandEventArgs(string s, int id = 0)
         {
             Message = s;
+            Id = id;
         }
+
+        public int Id { get; set; }
 
         public string Message { get; set; }
     }
