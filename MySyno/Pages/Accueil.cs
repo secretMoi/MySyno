@@ -19,6 +19,7 @@ namespace MySyno.Pages
             if (InvokeRequired) // permet de lancer cette méthode via un autre thread
             {
                 Invoque(ChangeEtatConnection, sender, e);
+                return;
             }
 
             if (Ssh.IsConnected)
