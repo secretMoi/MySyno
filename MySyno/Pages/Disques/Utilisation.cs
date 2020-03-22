@@ -22,10 +22,7 @@ namespace MySyno.Pages.Disques
         {
             if (InvokeRequired) // permet de lancer cette méthode via un autre thread
             {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    GereEspace(sender, e);
-                });
+                Invoque(GereEspace, sender, e);
                 return;
             }
 

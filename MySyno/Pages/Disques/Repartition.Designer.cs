@@ -43,7 +43,7 @@
             this.graphicRepartition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphicRepartition.Location = new System.Drawing.Point(0, 0);
             this.graphicRepartition.Name = "graphicRepartition";
-            this.graphicRepartition.Size = new System.Drawing.Size(3776, 1753);
+            this.graphicRepartition.Size = new System.Drawing.Size(2178, 1753);
             this.graphicRepartition.TabIndex = 0;
             // 
             // panel1
@@ -53,7 +53,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(3776, 220);
+            this.panel1.Size = new System.Drawing.Size(2178, 220);
             this.panel1.TabIndex = 1;
             // 
             // roundedCheckbox1
@@ -72,7 +72,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 220);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(3776, 1753);
+            this.panel2.Size = new System.Drawing.Size(2178, 1753);
             this.panel2.TabIndex = 2;
             // 
             // flatListBox1
@@ -81,8 +81,10 @@
             this.flatListBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flatListBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
             this.flatListBox1.Location = new System.Drawing.Point(523, 24);
+            this.flatListBox1.MaximumSize = new System.Drawing.Size(150, 240);
+            this.flatListBox1.MinimumSize = new System.Drawing.Size(150, 40);
             this.flatListBox1.Name = "flatListBox1";
-            this.flatListBox1.Size = new System.Drawing.Size(153, 43);
+            this.flatListBox1.Size = new System.Drawing.Size(150, 43);
             this.flatListBox1.TabIndex = 15;
             // 
             // Repartition
@@ -92,7 +94,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Repartition";
-            this.Size = new System.Drawing.Size(3776, 1973);
+            this.Size = new System.Drawing.Size(2178, 1973);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

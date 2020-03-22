@@ -10,6 +10,9 @@ namespace MySyno.Pages
             InitializeComponent();
 
             ChangeEtatConnection(null, null);
+
+            Ssh.ConnectEvent += ChangeEtatConnection;
+            Ssh.DisconnectEvent += ChangeEtatConnection;
         }
 
         public void ChangeEtatConnection(object sender, CommandEventArgs e)
@@ -38,13 +41,9 @@ namespace MySyno.Pages
         private void buttonConnexion_Click(object sender, System.EventArgs e)
         {
             if (Ssh.IsConnected)
-            {
-                Ssh.Disconnect(ChangeEtatConnection);
-            }
+                Ssh.Disconnect();
             else
-            {
-                Ssh.Connect(ChangeEtatConnection);
-            }
+                Ssh.Connect();
         }
     }
 }

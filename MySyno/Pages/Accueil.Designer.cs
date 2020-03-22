@@ -51,7 +51,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(3776, 220);
+            this.panel1.Size = new System.Drawing.Size(2178, 220);
             this.panel1.TabIndex = 0;
             // 
             // buttonConnexion
@@ -62,7 +62,7 @@
             this.buttonConnexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonConnexion.Font = new System.Drawing.Font("Yu Gothic UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonConnexion.ForeColor = System.Drawing.Color.White;
-            this.buttonConnexion.Location = new System.Drawing.Point(3490, 127);
+            this.buttonConnexion.Location = new System.Drawing.Point(1892, 127);
             this.buttonConnexion.Name = "buttonConnexion";
             this.buttonConnexion.Size = new System.Drawing.Size(239, 63);
             this.buttonConnexion.TabIndex = 2;
@@ -119,7 +119,7 @@
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(1801, 789);
+            this.button2.Location = new System.Drawing.Point(1002, 789);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(175, 175);
             this.button2.TabIndex = 2;
@@ -137,7 +137,7 @@
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button3.Location = new System.Drawing.Point(3554, 789);
+            this.button3.Location = new System.Drawing.Point(1956, 789);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(175, 175);
             this.button3.TabIndex = 3;
@@ -153,7 +153,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 220);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(3776, 1753);
+            this.panel2.Size = new System.Drawing.Size(2178, 1753);
             this.panel2.TabIndex = 4;
             // 
             // Accueil
@@ -165,7 +165,7 @@
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Name = "Accueil";
-            this.Size = new System.Drawing.Size(3776, 1973);
+            this.Size = new System.Drawing.Size(2178, 1973);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

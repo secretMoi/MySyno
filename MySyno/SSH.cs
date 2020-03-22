@@ -52,7 +52,7 @@ namespace MySyno
             try
             {
                 client.Connect();
-                Connect_Event(new CommandEventArgs(null));
+                Connect_Event(new CommandEventArgs());
             }
             catch
             {
@@ -70,16 +70,32 @@ namespace MySyno
             threadClose.Start();
         }
 
-        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat = null, int id = 0)
+        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat, int id, bool keepSubscriber)
         {
             if(resultat != null)
                 CommandeEvent += resultat;
 
-            Thread t = new Thread(() => RunCommand(commande, id));
+            Thread t = new Thread(() => RunCommand(resultat, commande, id, keepSubscriber));
             t.Start();
         }
 
-        private void RunCommand(string commande, int id)
+        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat, bool keepSubscriber)
+        {
+            SendCommand(commande, resultat, 0, keepSubscriber);
+        }
+
+        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat, int id)
+        {
+            SendCommand(commande, resultat, id, false);
+        }
+
+        public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat)
+        {
+            SendCommand(commande, resultat, 0, false);
+        }
+
+        // todo uliser mutex différent pour avoir plusieurs commandes en même temps
+        private void RunCommand(EventHandler<CommandEventArgs> fonctionRetour, string commande, int id, bool keepSubsciber)
         {
             VerrouMutex.WaitOne();
 
@@ -91,7 +107,10 @@ namespace MySyno
                     sc.Execute();
                     string resultat = sc.Result;
 
-                    Commande_Event(new CommandEventArgs(resultat, id));
+                    Commande_Event(new CommandEventArgs(resultat, id, keepSubsciber));
+
+                    if (!keepSubsciber)
+                        CommandeEvent -= fonctionRetour;
                 }
             }
             
@@ -105,7 +124,7 @@ namespace MySyno
             if (!_disposed && client.IsConnected)
                 client.Disconnect();
 
-            Disconnect_Event(new CommandEventArgs(null));
+            Disconnect_Event(new CommandEventArgs());
 
             VerrouMutex.ReleaseMutex();
         }
@@ -119,8 +138,11 @@ namespace MySyno
 
         private void Commande_Event(CommandEventArgs e)
         {
+            // fait une copie temporaire si un subsciber quitte avant d'avoir reçu sa réponse
+            EventHandler<CommandEventArgs> handler = CommandeEvent;
+
             // invoke la fonction de retour
-            CommandeEvent?.Invoke(this, e);
+            handler?.Invoke(this, e);
         }
 
         private void Connect_Event(CommandEventArgs e)
@@ -141,14 +163,21 @@ namespace MySyno
     // class qui permet de transmettre les arguments
     public class CommandEventArgs : EventArgs
     {
-        public CommandEventArgs(string s, int id = 0)
+        public CommandEventArgs(string s, int id, bool keepSubsciber)
         {
             Message = s;
             Id = id;
+            KeepSubsciber = keepSubsciber;
+        }
+
+        public CommandEventArgs()
+        {
         }
 
         public int Id { get; set; }
 
         public string Message { get; set; }
+
+        public bool KeepSubsciber { get; set; }
     }
 }

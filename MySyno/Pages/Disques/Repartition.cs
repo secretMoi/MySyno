@@ -15,30 +15,27 @@ namespace MySyno.Pages.Disques
 
             Ssh.SendCommand("df", ListePartitions, 0);
 
-            Ssh.SendCommand("find /volumeUSB1/usbshare/Film/ -type f -exec du -S {} + | sort -rh | head -n 8", GereEspace, 1);
+            Ssh.SendCommand("find /volumeUSB1/usbshare/Film/ -type f -exec du -S {} + | sort -rh | head -n 100", GereEspace, 1);
         }
 
         private void ListePartitions(object sender, CommandEventArgs e)
         {
             if(e.Id != 0) return;
+
             if (InvokeRequired) // permet de lancer cette méthode via un autre thread
             {
-                BeginInvoke((MethodInvoker) delegate { ListePartitions(sender, e); });
+                Invoque(ListePartitions, sender, e);
                 return;
             }
-
-
         }
 
         private void GereEspace(object sender, CommandEventArgs e)
         {
             if (e.Id != 1) return;
+
             if (InvokeRequired) // permet de lancer cette méthode via un autre thread
             {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    GereEspace(sender, e);
-                });
+                Invoque(GereEspace, sender, e);
                 return;
             }
 
