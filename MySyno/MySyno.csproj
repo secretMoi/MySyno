@@ -94,6 +94,12 @@
     <Compile Include="Controls\FlatListBox.Designer.cs">
       <DependentUpon>FlatListBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FlatTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FlatTextBox.Designer.cs">
+      <DependentUpon>FlatTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GraphicRepartition.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\FlatListBox.resx">
       <DependentUpon>FlatListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FlatTextBox.resx">
+      <DependentUpon>FlatTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GraphicRepartition.resx">
       <DependentUpon>GraphicRepartition.cs</DependentUpon>

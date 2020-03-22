@@ -42,6 +42,24 @@ namespace MySyno.Core.Figures
             Dessine();
         }
 
+        public Figure(Graphics graphique, Couple position, Couple dimension, Color? couleurRemplissage = null, Color? contour = null, int largeurContour = 0)
+        {
+            this.position = position.Copie();
+            this.dimension = dimension.Copie();
+            rotation = new Rotation();
+            enfants = new List<string>();
+
+            if (couleurRemplissage != null)
+                this.CouleurRemplissage = (Color)couleurRemplissage;
+            if (contour != null)
+                this.CouleurContour = (Color)contour;
+            this.largeurContour = largeurContour;
+
+            Graphique = graphique;
+
+            Dessine();
+        }
+
         public static void InitialiseConteneur(PictureBox pictureBox)
         {
             GraphiquePartage = Graphics.FromHwnd(pictureBox.Handle);

@@ -6,9 +6,9 @@ namespace MySyno.Controls.Checkbox
 {
     public partial class RoundedCheckbox : ElementGraphic
     {
-        private Color OffColor = Color.FromArgb(238, 83, 79);
-        private Color OnColor = Color.FromArgb(76, 176, 80);
-        private Color DisqueColor = Color.FromArgb(230, 230, 230);
+        private readonly Color _offColor = Color.FromArgb(238, 83, 79);
+        private readonly Color _onColor = Color.FromArgb(76, 176, 80);
+        private readonly Color _disqueColor = Color.FromArgb(230, 230, 230);
 
         private int _positionDebut;
         private int _positionFin;
@@ -34,20 +34,20 @@ namespace MySyno.Controls.Checkbox
             Dimensionne(TailleTexte);
             position.X = elements["Bouton"].Dimension.X - 35;
             position.Y = elements["Disque"].Position.Y - 2;
-            AjouterTexte("Label", "Off", DisqueColor, FontStyle.Bold);
+            AjouterTexte("Label", "Off", _disqueColor, FontStyle.Bold);
         }
         private void TexteOn()
         {
             Dimensionne(TailleTexte);
             position.X = 5;
             position.Y = elements["Disque"].Position.Y - 2;
-            AjouterTexte("Label", "On", DisqueColor, FontStyle.Bold);
+            AjouterTexte("Label", "On", _disqueColor, FontStyle.Bold);
         }
 
         private void InitialiseCadre()
         {
             Dimensionne(70, 30);
-            AjouterRectangleArrondi("Bouton", dimensions.Xi / 2, OffColor);
+            AjouterRectangleArrondi("Bouton", dimensions.Xi / 2, _offColor);
         }
 
         private void InitialiseCercle()
@@ -55,7 +55,7 @@ namespace MySyno.Controls.Checkbox
             Dimensionne(20);
             position.X = 10;
             position.Y = (elements["Bouton"].Dimension.Y - dimensions.Y) / 2;
-            AjouterDisque("Disque", DisqueColor);
+            AjouterDisque("Disque", _disqueColor);
 
             _positionDebut = position.Xi;
             _positionFin = elements["Bouton"].Dimension.Xi - _positionDebut - dimensions.Xi;
@@ -76,7 +76,7 @@ namespace MySyno.Controls.Checkbox
                 {
                     elements["Disque"].Position.X = _positionDebut;
                     timerSlide.Stop();
-                    GetFigure("Bouton").SetBrosse(OffColor);
+                    GetFigure("Bouton").SetBrosse(_offColor);
 
                     Remove("Label");
                     TexteOff();
@@ -92,7 +92,7 @@ namespace MySyno.Controls.Checkbox
                 {
                     elements["Disque"].Position.X = _positionFin;
                     timerSlide.Stop();
-                    GetFigure("Bouton").SetBrosse(OnColor);
+                    GetFigure("Bouton").SetBrosse(_onColor);
 
                     Remove("Label");
                     TexteOn();

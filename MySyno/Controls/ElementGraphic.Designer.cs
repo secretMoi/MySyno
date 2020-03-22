@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Name = "ElementGraphic";
-            this.Size = new System.Drawing.Size(3776, 1973);
+            this.Size = new System.Drawing.Size(2028, 1973);
             this.ResumeLayout(false);
 
         }

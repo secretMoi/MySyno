@@ -15,6 +15,8 @@ namespace MySyno.Controls
         protected Couple dimensions; // utlisé lors de la création de chaque figure
         protected double zoom;
 
+        protected Graphics Graphique;
+
         public ElementGraphic()
         {
             InitializeComponent();
@@ -29,6 +31,11 @@ namespace MySyno.Controls
         public ElementGraphic(Couple position) : this()
         {
             this.position = position.Copie();
+        }
+
+        public ElementGraphic(Graphics graphique) : this()
+        {
+            Graphique = graphique;
         }
 
         // change la mise à l'échelle'
@@ -70,6 +77,12 @@ namespace MySyno.Controls
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Rectangle(position, dimensions, remplissage, contour, largeurContour));
+        }
+
+        protected void AjouterRectangle(bool graph, string cle, Color? remplissage = null)
+        {
+            if (elements.ContainsKey(cle)) return;
+            elements.Add(cle, new Rectangle(Graphique, position, dimensions, remplissage));
         }
 
         protected void AjouterDisque(string cle, Color remplissage, Color? contour = null, int largeurContour = 0)

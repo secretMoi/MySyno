@@ -1,6 +1,6 @@
-﻿namespace MySyno.Controls.Checkbox
+﻿namespace MySyno.Controls
 {
-    partial class RoundedCheckbox
+    partial class FlatTextBox
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,35 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.timerSlide = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(72, 30);
+            this.pictureBox.Size = new System.Drawing.Size(150, 40);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
-            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
-            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             // 
-            // timerSlide
-            // 
-            this.timerSlide.Interval = 15;
-            this.timerSlide.Tick += new System.EventHandler(this.timerSlide_Tick);
-            // 
-            // RoundedCheckbox
+            // FlatTextBox
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.pictureBox);
-            this.Name = "RoundedCheckbox";
-            this.Size = new System.Drawing.Size(1740, 1890);
+            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Name = "FlatTextBox";
+            this.Size = new System.Drawing.Size(2028, 1973);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -65,6 +58,5 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.Timer timerSlide;
     }
 }
