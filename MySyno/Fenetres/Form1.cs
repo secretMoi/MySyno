@@ -88,6 +88,7 @@ namespace MySyno.Fenetres
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Ssh.ClearEvents();
             Ssh.Disconnect();
             Ssh.Dispose();
         }

@@ -6,10 +6,10 @@ namespace MySyno
 {
     public class SSH
     {
-        private string user;
-        private string password;
-        private string host;
-        private int port;
+        private string _user;
+        private string _password;
+        private string _host;
+        private int _port;
 
         private bool _disposed;
 
@@ -21,16 +21,20 @@ namespace MySyno
         public event EventHandler<CommandEventArgs> ConnectEvent;
         public event EventHandler<CommandEventArgs> DisconnectEvent;
 
+        private EventHandler<CommandEventArgs> LaunchCommandeEvent;
+
         public SSH(string host, string user, string password, int port = 22)
         {
-            this.user = user;
-            this.password = password;
-            this.host = host;
-            this.port = port;
+            this._user = user;
+            this._password = password;
+            this._host = host;
+            this._port = port;
 
             client = new SshClient(host, port, user, password);
 
             _disposed = false;
+
+            LaunchCommandeEvent = CommandeEvent;
         }
 
         public void Connect(EventHandler<CommandEventArgs> resultat = null)
@@ -52,7 +56,8 @@ namespace MySyno
             try
             {
                 client.Connect();
-                Connect_Event(new CommandEventArgs());
+                //Connect_Event(new CommandEventArgs());
+                LaunchEvent(new CommandEventArgs(), ConnectEvent);
             }
             catch
             {
@@ -107,7 +112,8 @@ namespace MySyno
                     sc.Execute();
                     string resultat = sc.Result;
 
-                    Commande_Event(new CommandEventArgs(resultat, id, keepSubsciber));
+                    //Commande_Event(new CommandEventArgs(resultat, id, keepSubsciber));
+                    LaunchEvent(new CommandEventArgs(resultat, id, keepSubsciber), CommandeEvent);
 
                     if (!keepSubsciber)
                         CommandeEvent -= fonctionRetour;
@@ -124,7 +130,8 @@ namespace MySyno
             if (!_disposed && client.IsConnected)
                 client.Disconnect();
 
-            Disconnect_Event(new CommandEventArgs());
+            //Disconnect_Event(new CommandEventArgs());
+            LaunchEvent(new CommandEventArgs(), DisconnectEvent);
 
             VerrouMutex.ReleaseMutex();
         }
@@ -136,7 +143,12 @@ namespace MySyno
             _disposed = true;
         }
 
-        private void Commande_Event(CommandEventArgs e)
+        private void LaunchEvent(CommandEventArgs e, EventHandler<CommandEventArgs> handler)
+        {
+            handler?.Invoke(this, e);
+        }
+
+        /*private void Commande_Event(CommandEventArgs e)
         {
             // fait une copie temporaire si un subsciber quitte avant d'avoir reçu sa réponse
             EventHandler<CommandEventArgs> handler = CommandeEvent;
@@ -155,9 +167,16 @@ namespace MySyno
         {
             // invoke la fonction de retour
             DisconnectEvent?.Invoke(this, e);
-        }
+        }*/
 
         public bool IsConnected => !_disposed && client.IsConnected;
+
+        public void ClearEvents()
+        {
+            ConnectEvent = null;
+            CommandeEvent = null;
+            DisconnectEvent = null;
+        }
     }
 
     // class qui permet de transmettre les arguments

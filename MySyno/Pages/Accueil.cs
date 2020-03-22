@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using MySyno.Controls;
+﻿using MySyno.Controls;
 
 namespace MySyno.Pages
 {
@@ -19,11 +18,7 @@ namespace MySyno.Pages
         {
             if (InvokeRequired) // permet de lancer cette méthode via un autre thread
             {
-                BeginInvoke((MethodInvoker)delegate
-                {
-                    ChangeEtatConnection(sender, e);
-                });
-                return;
+                Invoque(ChangeEtatConnection, sender, e);
             }
 
             if (Ssh.IsConnected)

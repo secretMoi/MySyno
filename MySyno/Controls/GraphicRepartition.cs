@@ -41,12 +41,15 @@ namespace MySyno.Controls
 			foreach (KeyValuePair<string, float> element in _data)
 			{
 				// nom
+				// hauteur 12.5 * 5 => 62
 				Dimensionne(12.5f);
 				position.X = 10;
 				position.Y = compteur * dimensions.Y * 5;
 				AjouterTexte("Label" + element.Key, element.Key, Color.Black);
 
 				// barre
+				// hauteur = 62 + 25 = 87
+				// hauteur finale = 87 + 20 = 107
 				position.X = 100;
 				position.Y += 25;
 				Dimensionne((int) (element.Value * rapport), 20);
@@ -147,10 +150,13 @@ namespace MySyno.Controls
 		private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
 		{
 			int scroll = e.Delta;
+            int valeur = 107; // vient de la hauteur totale d'un composant
+            if (e.Delta < 0)
+                valeur = -valeur;
 
-			if (_premiereFigure.Position.Y + scroll < 100 && _derniereFigure.Position.Y + scroll > 100)
+			if (_premiereFigure.Position.Y + scroll < 100 && _derniereFigure.Position.Y + scroll > pictureBox1.Height - 107)
 			{
-				Deplace(0, scroll);
+				Deplace(0, valeur);
 
 				pictureBox1.Invalidate();
 			}
