@@ -109,6 +109,12 @@ namespace MySyno.Controls.Checkbox
             timerSlide.Start();
         }
 
+        private void pictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Cursor.Current != Cursors.Hand)
+                Cursor.Current = Cursors.Hand;
+        }
+
         public bool State { get; set; }
     }
 }

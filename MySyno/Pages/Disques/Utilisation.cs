@@ -1,16 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MySyno.Controls;
 
 namespace MySyno.Pages.Disques
 {
     public partial class Utilisation : ThemePanel
     {
-        private enum Colonnes
-        {
-            Total = 1, Utilise = 2, Utilisation = 4, Nom = 5
-        }
-
         public Utilisation()
         {
             InitializeComponent();
@@ -26,8 +20,7 @@ namespace MySyno.Pages.Disques
                 return;
             }
 
-            ParseCommandDf parseCommandDf = new ParseCommandDf();
-            parseCommandDf.AddColonnes(
+            ParseCommandDf parseCommandDf = new ParseCommandDf(
                 ParseCommandDf.Colonnes.Total,
                 ParseCommandDf.Colonnes.Utilise,
                 ParseCommandDf.Colonnes.Utilisation,

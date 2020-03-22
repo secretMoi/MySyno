@@ -29,6 +29,8 @@ namespace MySyno.Controls
 		{
 			if(incomingData == null && _data == null) return; // si aucune donnée ne peut être utilisée
 
+			Clear();
+
 			if(incomingData != null) // si on ne recycle pas les données existantes mais qu'on en prend des nouvelles
 				_data = incomingData;
 
@@ -154,7 +156,7 @@ namespace MySyno.Controls
             if (e.Delta < 0)
                 valeur = -valeur;
 
-			if (_premiereFigure.Position.Y + scroll < 100 && _derniereFigure.Position.Y + scroll > pictureBox1.Height - 107)
+			if (_premiereFigure.Position.Y + scroll < 110 && _derniereFigure.Position.Y + scroll > pictureBox1.Height - 110)
 			{
 				Deplace(0, valeur);
 
@@ -170,8 +172,7 @@ namespace MySyno.Controls
 		// event lors du redimensionnement de la fenêtre
 		private void pictureBox1_SizeChanged(object sender, EventArgs e)
 		{
-			elements.Clear();
-			pictureBox1.Image = null;
+			Clear();
 			CreateElement();
 		}
 
@@ -179,6 +180,12 @@ namespace MySyno.Controls
 		private void pictureBox1_MouseHover(object sender, EventArgs e)
 		{
 			pictureBox1.Focus();
+		}
+
+        public void Clear()
+        {
+            elements.Clear();
+            pictureBox1.Image = null;
 		}
 	}
 }

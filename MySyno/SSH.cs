@@ -11,17 +11,15 @@ namespace MySyno
         private string _host;
         private int _port;
 
-        private bool _disposed;
+        private bool _disposed; // permet de savoir si la connexion a été disposed
 
-        private readonly SshClient client;
+        private readonly SshClient client; // contient la connexion
         private static readonly Mutex VerrouMutex = new Mutex();
 
-        // Declare the event using EventHandler<T>
+        // events EventHandler<T>
         public event EventHandler<CommandEventArgs> CommandeEvent;
         public event EventHandler<CommandEventArgs> ConnectEvent;
         public event EventHandler<CommandEventArgs> DisconnectEvent;
-
-        private EventHandler<CommandEventArgs> LaunchCommandeEvent;
 
         public SSH(string host, string user, string password, int port = 22)
         {
@@ -33,8 +31,6 @@ namespace MySyno
             client = new SshClient(host, port, user, password);
 
             _disposed = false;
-
-            LaunchCommandeEvent = CommandeEvent;
         }
 
         public void Connect(EventHandler<CommandEventArgs> resultat = null)
@@ -56,7 +52,6 @@ namespace MySyno
             try
             {
                 client.Connect();
-                //Connect_Event(new CommandEventArgs());
                 LaunchEvent(new CommandEventArgs(), ConnectEvent);
             }
             catch
@@ -75,6 +70,12 @@ namespace MySyno
             threadClose.Start();
         }
 
+        /*
+         * commande, commande à exécuter
+         * resultat, fonction de retour à appeler
+         * id, donne un id si plusieurs commandes sont appelées en même temps, permettant de les différencier
+         * keepSubscriber, indique si le subsciber veut se désabonner après le résultat
+         */
         public void SendCommand(string commande, EventHandler<CommandEventArgs> resultat, int id, bool keepSubscriber)
         {
             if(resultat != null)
@@ -104,17 +105,18 @@ namespace MySyno
         {
             VerrouMutex.WaitOne();
 
-            if (client != null && !_disposed)
+            if (client != null && !_disposed) // si la connexion n'a pas été détruite entre temps
             {
-                if (client.IsConnected)
+                if (client.IsConnected) // si on a pas été déconnecté entre temps
                 {
                     SshCommand sc = client.CreateCommand(commande);
                     sc.Execute();
                     string resultat = sc.Result;
 
-                    //Commande_Event(new CommandEventArgs(resultat, id, keepSubsciber));
+                    // lance l'event de fin de commande pour notifier les subscibers du resultat
                     LaunchEvent(new CommandEventArgs(resultat, id, keepSubsciber), CommandeEvent);
 
+                    // si les subscibers ne veulent recevoir le résultat qu'une fois
                     if (!keepSubsciber)
                         CommandeEvent -= fonctionRetour;
                 }
@@ -130,7 +132,6 @@ namespace MySyno
             if (!_disposed && client.IsConnected)
                 client.Disconnect();
 
-            //Disconnect_Event(new CommandEventArgs());
             LaunchEvent(new CommandEventArgs(), DisconnectEvent);
 
             VerrouMutex.ReleaseMutex();
@@ -143,31 +144,11 @@ namespace MySyno
             _disposed = true;
         }
 
+        // permet de lancer un event aux subsciber
         private void LaunchEvent(CommandEventArgs e, EventHandler<CommandEventArgs> handler)
         {
             handler?.Invoke(this, e);
         }
-
-        /*private void Commande_Event(CommandEventArgs e)
-        {
-            // fait une copie temporaire si un subsciber quitte avant d'avoir reçu sa réponse
-            EventHandler<CommandEventArgs> handler = CommandeEvent;
-
-            // invoke la fonction de retour
-            handler?.Invoke(this, e);
-        }
-
-        private void Connect_Event(CommandEventArgs e)
-        {
-            // invoke la fonction de retour
-            ConnectEvent?.Invoke(this, e);
-        }
-
-        private void Disconnect_Event(CommandEventArgs e)
-        {
-            // invoke la fonction de retour
-            DisconnectEvent?.Invoke(this, e);
-        }*/
 
         public bool IsConnected => !_disposed && client.IsConnected;
 

@@ -38,11 +38,12 @@
             // 
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(75, 35);
+            this.pictureBox.Size = new System.Drawing.Size(72, 30);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseDown);
+            this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MouseMove);
             // 
             // timerSlide
             // 
@@ -55,7 +56,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.pictureBox);
             this.Name = "RoundedCheckbox";
-            this.Size = new System.Drawing.Size(1856, 1890);
+            this.Size = new System.Drawing.Size(3776, 1890);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 

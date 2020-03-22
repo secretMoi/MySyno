@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MySyno.Controls;
 using MySyno.Pages;
 
+// todo système de maj avec dernier client sur nas
 namespace MySyno.Fenetres
 {
     public partial class Form1 : FormSsh
@@ -20,7 +21,7 @@ namespace MySyno.Fenetres
 
             Resize += Form1_Resize;
 
-            Ssh = new SSH("192.168.1.20", "Quentin", "ee6f4e2b02", 32);
+            Ssh = new SSH("82.212.177.233", "Quentin", "ee6f4e2b02", 3232);
 
             ThemePanel.SetConnection(Ssh);
             Accueil accueil = new Accueil();

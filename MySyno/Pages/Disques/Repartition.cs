@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using MySyno.Controls;
+using MySyno.Controls.Buttons;
 
 namespace MySyno.Pages.Disques
 {
     public partial class Repartition : ThemePanel
     {
-
+        private List<string> _nom;
 
         public Repartition()
         {
             InitializeComponent();
+
+            _nom = new List<string>();
 
             Ssh.SendCommand("df", ListePartitions, 0);
 
@@ -26,6 +28,21 @@ namespace MySyno.Pages.Disques
             {
                 Invoque(ListePartitions, sender, e);
                 return;
+            }
+
+            ParseCommandDf parseCommandDf = new ParseCommandDf(
+                ParseCommandDf.Colonnes.Nom
+            );
+
+            string[][] arrayParsed = parseCommandDf.Parse(e.Message);
+            string nom;
+            foreach (string[] ligne in arrayParsed)
+            {
+                nom = ligne[parseCommandDf.GetColumn(ParseCommandDf.Colonnes.Nom)];
+                if (nom.Contains("volume"))
+                    flatListBox.Add(ParseCommandDf.CleanName(nom));
+
+                _nom.Add(nom);
             }
         }
 
@@ -46,9 +63,6 @@ namespace MySyno.Pages.Disques
             string[] lines = e.Message.Split('\n');
 
             int index;
-            string result;
-
-            string suffixeDoublon;
             int compteurSuffixeDoublon = 0;
 
             foreach (string line in lines)
@@ -78,6 +92,20 @@ namespace MySyno.Pages.Disques
             graphicRepartition.CreateElement(data); // envoie les données au générateur de graphique
         }
 
+        private void flatButtonEnvoyer_Click(object sender, EventArgs e)
+        {
+            string titre = flatListBox.Titre.Remove(0, 3);
+
+            foreach (string nom in _nom)
+            {
+                if (nom.Contains(titre))
+                {
+                    Ssh.SendCommand("find " + nom + " -type f -exec du -S {} + | sort -rh | head -n 100", GereEspace, 1);
+                    break;
+                }
+            }
+        }
+
         private static string CleanName(string name)
         {
             string cleanedName;
@@ -93,5 +121,7 @@ namespace MySyno.Pages.Disques
 
             return cleanedName;
         }
+
+        
     }
 }
