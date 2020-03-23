@@ -22,7 +22,7 @@ namespace MySyno.Controls.Checkbox
 
             Dock = DockStyle.None;
 
-            Figure.InitialiseConteneur(pictureBox);
+            InitGraphiqueFromPictureBox(pictureBox);
 
             InitialiseCadre();
             InitialiseCercle();

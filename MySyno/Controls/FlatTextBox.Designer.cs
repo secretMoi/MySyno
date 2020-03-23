@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timerClignote = new System.Windows.Forms.Timer(this.components);
             this.pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // timerClignote
+            // 
+            this.timerClignote.Interval = 500;
+            this.timerClignote.Tick += new System.EventHandler(this.timerClignote_Tick);
             // 
             // pictureBox
             // 
@@ -49,14 +56,14 @@
             this.Controls.Add(this.pictureBox);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "FlatTextBox";
-            this.Size = new System.Drawing.Size(2028, 1973);
+            this.Size = new System.Drawing.Size(1856, 1890);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private System.Windows.Forms.Timer timerClignote;
         private System.Windows.Forms.PictureBox pictureBox;
     }
 }

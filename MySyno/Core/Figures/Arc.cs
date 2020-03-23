@@ -4,10 +4,10 @@ namespace MySyno.Core.Figures
 {
     public class Arc : Figure
     {
-        private float angleDebut;
-        private float amplitude;
+        private readonly float angleDebut;
+        private readonly float amplitude;
         
-        public Arc(Couple position, Couple dimension, Color contour, int largeurContour, float angleDebut, float amplitude) : base(position, dimension, null, contour, largeurContour)
+        public Arc(Graphics graphique, Couple position, Couple dimension, Color contour, int largeurContour, float angleDebut, float amplitude) : base(position, dimension, null, contour, largeurContour)
         {
             this.angleDebut = angleDebut;
             this.amplitude = amplitude;

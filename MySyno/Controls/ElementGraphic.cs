@@ -2,10 +2,12 @@
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 using MySyno.Core;
 using MySyno.Core.Figures;
 using Rectangle = MySyno.Core.Figures.Rectangle;
 
+// todo ne plus hériter mais juste contenir la classe pour que les autres controls puisse directement hériter de ce qu'ils veulent
 namespace MySyno.Controls
 {
     public partial class ElementGraphic : ThemePanel
@@ -33,9 +35,9 @@ namespace MySyno.Controls
             this.position = position.Copie();
         }
 
-        public ElementGraphic(Graphics graphique) : this()
+        protected void InitGraphiqueFromPictureBox(PictureBox pictureBox)
         {
-            Graphique = graphique;
+            Graphique = Graphics.FromHwnd(pictureBox.Handle);
         }
 
         // change la mise à l'échelle'
@@ -53,6 +55,11 @@ namespace MySyno.Controls
         protected void Dimensionne(float x)
         {
             dimensions = new Couple(x * zoom, x * zoom);
+        }
+        // permet de mettre à l'échelle un élément
+        protected void Dimensionne(Size taille)
+        {
+            dimensions = new Couple(taille);
         }
 
         // affiche toutes les figures de l'élément
@@ -73,13 +80,7 @@ namespace MySyno.Controls
             }
         }
 
-        protected void AjouterRectangle(string cle, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
-        {
-            if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new Rectangle(position, dimensions, remplissage, contour, largeurContour));
-        }
-
-        protected void AjouterRectangle(bool graph, string cle, Color? remplissage = null)
+        protected void AjouterRectangle(string cle, Color? remplissage = null)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Rectangle(Graphique, position, dimensions, remplissage));
@@ -88,19 +89,19 @@ namespace MySyno.Controls
         protected void AjouterDisque(string cle, Color remplissage, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new Disque(position, dimensions.Xi, remplissage, contour, largeurContour));
+            elements.Add(cle, new Disque(Graphique, position, dimensions.Xi, remplissage, contour, largeurContour));
         }
 
         protected void AjouterCercle(string cle, Color contour, int largeurContour = 1)
         {
             if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new Cercle(position, dimensions.Xi, contour, largeurContour));
+            elements.Add(cle, new Cercle(Graphique, position, dimensions.Xi, contour, largeurContour));
         }
 
         protected void AjouterEllipse(string cle, Color remplissage, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new Ellipse(position, dimensions, remplissage, contour, largeurContour));
+            elements.Add(cle, new Ellipse(Graphique, position, dimensions, remplissage, contour, largeurContour));
         }
 
         protected void AjouterLigne(string cle, Color contour, int largeurContour)
@@ -109,25 +110,25 @@ namespace MySyno.Controls
 
             Couple positionSource = position;
             Couple positionDestination = dimensions;
-            elements.Add(cle, new Ligne(positionSource, positionDestination, contour, largeurContour));
+            elements.Add(cle, new Ligne(Graphique, positionSource, positionDestination, contour, largeurContour));
         }
 
         protected void AjouterArc(string cle, Color contour, int largeurContour, float angleDebut, float amplitude)
         {
             if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new Arc(position, dimensions, contour, largeurContour, angleDebut, amplitude));
+            elements.Add(cle, new Arc(Graphique, position, dimensions, contour, largeurContour, angleDebut, amplitude));
         }
 
         protected void AjouterTexte(string cle, string texte, Color remplissage, FontStyle style = default, string police = "Yu Gothic UI")
         {
             if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new Texte(texte, position, remplissage, dimensions.Xf, style, police));
+            elements.Add(cle, new Texte(Graphique, texte, position, remplissage, dimensions.Xf, style, police));
         }
 
         protected void AjouterRectangleArrondi(string cle, int arrondi, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
-            elements.Add(cle, new RectangleArrondi(position, dimensions, arrondi, remplissage, contour, largeurContour));
+            elements.Add(cle, new RectangleArrondi(Graphique, position, dimensions, arrondi, remplissage, contour, largeurContour));
         }
 
         protected void Remove(string cle)

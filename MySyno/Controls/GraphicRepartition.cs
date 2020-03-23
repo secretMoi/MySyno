@@ -20,7 +20,7 @@ namespace MySyno.Controls
 		{
 			InitializeComponent();
 
-			Figure.InitialiseConteneur(pictureBox1);
+			InitGraphiqueFromPictureBox(pictureBox1);
 
 			pictureBox1.MouseWheel += pictureBox1_MouseWheel;
 		}

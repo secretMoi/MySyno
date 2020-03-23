@@ -56,7 +56,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.pictureBox);
             this.Name = "RoundedCheckbox";
-            this.Size = new System.Drawing.Size(1740, 1890);
+            this.Size = new System.Drawing.Size(3776, 1890);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 

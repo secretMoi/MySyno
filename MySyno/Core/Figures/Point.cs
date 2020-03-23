@@ -4,7 +4,7 @@ namespace MySyno.Core.Figures
 {
     public class Point : Figure
     {
-        public Point(Couple position, Couple dimension, Color couleur) : base(position, dimension, couleur)
+        public Point(Graphics graphique, Couple position, Couple dimension, Color couleur) : base(position, dimension, couleur)
         {
         }
 

@@ -39,7 +39,7 @@ namespace MySyno.Core.Figures
 
             Graphique = GraphiquePartage;
             
-            Dessine();
+            //Dessine();
         }
 
         public Figure(Graphics graphique, Couple position, Couple dimension, Color? couleurRemplissage = null, Color? contour = null, int largeurContour = 0)
@@ -57,7 +57,12 @@ namespace MySyno.Core.Figures
 
             Graphique = graphique;
 
-            Dessine();
+            //Dessine();
+        }
+
+        public void SetGraphique(Graphics graphics)
+        {
+            Graphique = graphics;
         }
 
         public static void InitialiseConteneur(PictureBox pictureBox)
@@ -128,7 +133,7 @@ namespace MySyno.Core.Figures
             double distanceFin = Math.Sqrt(dimension.X * dimension.X + dimension.Y * dimension.Y);
             
             // angle du pt1 au pt 3
-            double angleFin = Math.Atan((double)dimension.Y / (double)dimension.X);
+            double angleFin = Math.Atan(dimension.Y / dimension.X);
 
             // coordonnées du pt 3 à l'état initial'
             pointFin.X = (int)(distanceFin * Math.Cos(angleFin));

@@ -4,7 +4,7 @@ namespace MySyno.Core.Figures
 {
     public class Ligne : Figure
     {
-        public Ligne(Couple positionSource, Couple positionDestination, Color contour, int largeurContour) : 
+        public Ligne(Graphics graphique, Couple positionSource, Couple positionDestination, Color contour, int largeurContour) : 
             base(positionSource, positionDestination, null, contour, largeurContour)
         {
         }

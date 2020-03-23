@@ -4,7 +4,7 @@ namespace MySyno.Core.Figures
 {
     public class Ellipse : Figure
     {
-        public Ellipse(Couple position, Couple dimension, Color couleurRemplissage, Color? contour = null, int largeurContour = 0) : 
+        public Ellipse(Graphics graphique, Couple position, Couple dimension, Color couleurRemplissage, Color? contour = null, int largeurContour = 0) : 
             base(position, dimension, couleurRemplissage, contour, largeurContour)
         {
             

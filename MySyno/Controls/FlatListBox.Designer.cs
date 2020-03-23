@@ -74,6 +74,7 @@
             // panelCorps
             // 
             this.panelCorps.Location = new System.Drawing.Point(0, 40);
+            this.panelCorps.Margin = new System.Windows.Forms.Padding(0);
             this.panelCorps.Name = "panelCorps";
             this.panelCorps.Size = new System.Drawing.Size(150, 0);
             this.panelCorps.TabIndex = 2;
@@ -91,6 +92,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
             this.Controls.Add(this.panelTitre);
             this.Controls.Add(this.panelCorps);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.MaximumSize = new System.Drawing.Size(150, 40);
             this.MinimumSize = new System.Drawing.Size(150, 40);
             this.Name = "FlatListBox";

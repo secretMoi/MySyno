@@ -52,7 +52,7 @@ namespace MySyno.Core
             }
         }
         
-        protected void AjouterRectangle(string cle, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
+        /*protected void AjouterRectangle(string cle, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Figures.Rectangle(position, dimensions, remplissage, contour, largeurContour));
@@ -89,7 +89,7 @@ namespace MySyno.Core
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Arc(position, dimensions, contour, largeurContour, angleDebut, amplitude));
-        }
+        }*/
 
         // déplace à une position donnée
         public void Deplace(Couple positionDestination)

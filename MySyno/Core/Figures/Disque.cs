@@ -4,7 +4,7 @@ namespace MySyno.Core.Figures
 {
     public class Disque : Figure
     {
-        public Disque(Couple position, int rayon, Color couleurRemplissage, Color? contour = null, int largeurContour = 0) :
+        public Disque(Graphics graphique, Couple position, int rayon, Color couleurRemplissage, Color? contour = null, int largeurContour = 0) :
             base(position, new Couple(rayon, rayon), couleurRemplissage, contour, largeurContour)
         {
         }

@@ -4,16 +4,9 @@ namespace MySyno.Core.Figures
 {
     public class Rectangle : Figure
     {
-        public Rectangle(Couple position, Couple dimension, Color? remplissage = null, Color? contour = null, int largeurContour = 10) :
-            base(position, dimension, remplissage, contour, largeurContour)
-        {
-            
-        }
-
         public Rectangle(Graphics graphique, Couple position, Couple dimension, Color? remplissage = null, Color? contour = null, int largeurContour = 10) :
-            base(position, dimension, remplissage, contour, largeurContour)
+            base(graphique, position, dimension, remplissage, contour, largeurContour)
         {
-            Graphique = graphique;
         }
 
         public override void Genere()

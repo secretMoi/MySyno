@@ -4,7 +4,7 @@ namespace MySyno.Core.Figures
 {
     public class Cercle : Figure
     {
-        public Cercle(Couple position, int rayon, Color contour, int largeurContour) :
+        public Cercle(Graphics graphique, Couple position, int rayon, Color contour, int largeurContour) :
             base(position, new Couple(rayon, rayon), null, contour, largeurContour)
         {
         }

@@ -7,7 +7,7 @@ namespace MySyno.Core.Figures
         private readonly Font _font;
         private readonly string _texte;
 
-        public Texte(string texte, Couple position, Color remplissage, float taille = 12.5f, FontStyle style = default, string police = "Yu Gothic UI") :
+        public Texte(Graphics graphique, string texte, Couple position, Color remplissage, float taille = 12.5f, FontStyle style = default, string police = "Yu Gothic UI") :
             base(position, position, remplissage)
         {
             _texte = texte;

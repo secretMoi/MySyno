@@ -6,7 +6,7 @@ namespace MySyno.Core.Figures
     class RectangleArrondi : Figure
     {
         private int _arrondi;
-        public RectangleArrondi(Couple position, Couple dimension, int arrondi, Color? couleurRemplissage = default, Color? contour = default, int largeurContour = 0) :
+        public RectangleArrondi(Graphics graphique, Couple position, Couple dimension, int arrondi, Color? couleurRemplissage = default, Color? contour = default, int largeurContour = 0) :
             base(position, dimension, couleurRemplissage, contour, largeurContour)
         {
             _arrondi = arrondi;
