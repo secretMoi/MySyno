@@ -37,7 +37,7 @@
             this.textBox.Location = new System.Drawing.Point(0, 10);
             this.textBox.Margin = new System.Windows.Forms.Padding(0);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(150, 20);
+            this.textBox.Size = new System.Drawing.Size(140, 20);
             this.textBox.TabIndex = 0;
             // 
             // FlatTextBox

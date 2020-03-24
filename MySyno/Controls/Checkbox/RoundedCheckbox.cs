@@ -1,12 +1,15 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
-using MySyno.Core.Figures;
+using MySyno.Core;
 
 namespace MySyno.Controls.Checkbox
 {
     public partial class RoundedCheckbox : UserControl
     {
-        private readonly ElementGraphic element;
+        private readonly ElementGraphic _element;
+
+        private bool _state;
 
         private readonly Color _offColor = Color.FromArgb(238, 83, 79);
         private readonly Color _onColor = Color.FromArgb(76, 176, 80);
@@ -22,93 +25,107 @@ namespace MySyno.Controls.Checkbox
         {
             InitializeComponent();
 
-            Dock = DockStyle.None;
-
-            element = new ElementGraphic(pictureBox);
+            _element = new ElementGraphic(pictureBox);
 
             InitialiseCadre();
             InitialiseCercle();
             TexteOff();
+            PositionFinale(_state, true);
+
+            ResizeControl(null, null);
         }
 
         private void TexteOff()
         {
-            element.Dimensionne(TailleTexte);
-            element.Positionne(
-                element.Dimension("Bouton").X - 35,
-                element.Position("Disque").Y - 2
+            _element.Dimensionne(TailleTexte);
+            _element.Positionne(
+                _element.Dimension("Bouton").X - 35,
+                _element.Position("Disque").Y - 2
             );
             
-            element.AjouterTexte("Label", "Off", _disqueColor, FontStyle.Bold);
+            _element.AjouterTexte("Label", "Off", _disqueColor, FontStyle.Bold);
         }
         private void TexteOn()
         {
-            element.Dimensionne(TailleTexte);
-            element.Positionne(
+            _element.Dimensionne(TailleTexte);
+            _element.Positionne(
                 5,
-                element.Position("Disque").Y - 2
+                _element.Position("Disque").Y - 2
             );
 
-            element.AjouterTexte("Label", "On", _disqueColor, FontStyle.Bold);
+            _element.AjouterTexte("Label", "On", _disqueColor, FontStyle.Bold);
         }
 
         private void InitialiseCadre()
         {
-            element.Dimensionne(70, 30);
-            element.AjouterRectangleArrondi("Bouton", element.GetDimension.Xi / 2, _offColor);
+            _element.Dimensionne(70, 30);
+            _element.AjouterRectangleArrondi("Bouton", _element.GetDimension.Yi / 2, _offColor);
         }
 
         private void InitialiseCercle()
         {
-            element.Dimensionne(20);
-            element.Positionne(
+            _element.Dimensionne(20);
+            _element.Positionne(
                 10,
-                (element.Dimension("Bouton").Y - element.GetDimension.Y) / 2
+                (_element.Dimension("Bouton").Y - _element.GetDimension.Y) / 2
                 );
 
-            element.AjouterDisque("Disque", _disqueColor);
+            _element.AjouterDisque("Disque", _disqueColor);
 
-            _positionDebut = element.GetPosition.Xi;
-            _positionFin = element.Dimension("Bouton").Xi - _positionDebut - element.GetDimension.Xi;
+            _positionDebut = _element.GetPosition.Xi;
+            _positionFin = _element.Dimension("Bouton").Xi - _positionDebut - _element.GetDimension.Xi;
         }
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-            element.Affiche(e.Graphics);
+            _element.Affiche(e.Graphics);
         }
 
-        private void timerSlide_Tick(object sender, System.EventArgs e)
+        private void PositionFinale(bool state, bool invalidate)
         {
-            if (State)
+            if (!state)
             {
-                element.Deplace("Disque", -VitesseAnimation);
+                _element.Position("Disque").X = _positionDebut;
+                _element.GetFigure("Bouton").SetBrosse(_offColor);
 
-                if (element.Position("Disque").X <= _positionDebut)
+                _element.Remove("Label");
+                TexteOff();
+            }
+            else
+            {
+                _element.Position("Disque").X = _positionFin;
+                _element.GetFigure("Bouton").SetBrosse(_onColor);
+
+                _element.Remove("Label");
+                TexteOn();
+            }
+
+            if(invalidate)
+                pictureBox.Invalidate();
+        }
+
+        private void timerSlide_Tick(object sender, EventArgs e)
+        {
+            if (_state)
+            {
+                _element.Deplace("Disque", -VitesseAnimation);
+
+                if (_element.Position("Disque").X <= _positionDebut)
                 {
-                    element.Position("Disque").X = _positionDebut;
                     timerSlide.Stop();
-                    element.GetFigure("Bouton").SetBrosse(_offColor);
-
-                    element.Remove("Label");
-                    TexteOff();
-
-                    State = !State;
+                    _state = false;
+                    PositionFinale(_state, false);
                 }
             }
             else
             {
-                element.Deplace("Disque", VitesseAnimation);
+                _element.Deplace("Disque", VitesseAnimation);
 
-                if (element.Position("Disque").X >= _positionFin)
+                if (_element.Position("Disque").X >= _positionFin)
                 {
-                    element.Position("Disque").X = _positionFin;
                     timerSlide.Stop();
-                    element.GetFigure("Bouton").SetBrosse(_onColor);
-
-                    element.Remove("Label");
-                    TexteOn();
-
-                    State = !State;
+                    _state = true;
+                    PositionFinale(_state, false);
                 }
             }
 
@@ -126,6 +143,20 @@ namespace MySyno.Controls.Checkbox
                 Cursor.Current = Cursors.Hand;
         }
 
-        public bool State { get; set; }
+        private void ResizeControl(object sender, EventArgs e)
+        {
+            Couple nouvelleTaille = new Couple(pictureBox.Location.X, (Height - pictureBox.Height) / 2);
+            pictureBox.Location = nouvelleTaille.ToPoint();
+        }
+
+        public bool State
+        {
+            get => _state;
+            set
+            {
+                _state = value;
+                PositionFinale(_state, true);
+            }
+        }
     }
 }

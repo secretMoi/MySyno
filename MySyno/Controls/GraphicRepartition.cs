@@ -70,7 +70,7 @@ namespace MySyno.Controls
                     _element.GetPosition.Y - 1
                 );
 
-				_element.AjouterTexte("Valeur" + item.Key, ConvertitNombre(item.Value), Theme.Texte);
+				_element.AjouterTexte("Valeur" + item.Key, ConvertitNombre(item.Value), Color.Black);
 
                 if (compteur == 0) // si premier élément
                 {
@@ -164,7 +164,7 @@ namespace MySyno.Controls
             if (e.Delta < 0)
                 valeur = -valeur;
 
-			if (_premiereFigure.Position.Y + scroll < 110 && _derniereFigure.Position.Y + scroll > pictureBox1.Height - 110)
+			if (_premiereFigure.Position.Y + scroll < 110 && _derniereFigure.Position.Y + scroll > 0)
 			{
                 _element.Deplace(0, valeur);
 

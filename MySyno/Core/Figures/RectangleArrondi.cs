@@ -14,18 +14,13 @@ namespace MySyno.Core.Figures
 
         public override void Genere()
         {
-            _arrondi = 15;
+            if (_arrondi == 0) return;
+
             int diameter = _arrondi * 2;
-            
+
             Size size = new Size(diameter, diameter);
             RectangleF arc = new RectangleF(position.ToPoint(), size);
             GraphicsPath path = new GraphicsPath();
-
-            /*if (_arrondi == 0)
-            {
-                Rectangle()
-                return;
-            }*/
 
             // top left arc  
             path.AddArc(arc, 180, 90);

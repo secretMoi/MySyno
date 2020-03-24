@@ -37,6 +37,7 @@
             // pictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(72, 30);
             this.pictureBox.TabIndex = 0;
@@ -55,8 +56,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.pictureBox);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "RoundedCheckbox";
-            this.Size = new System.Drawing.Size(3776, 1890);
+            this.Size = new System.Drawing.Size(72, 30);
+            this.SizeChanged += new System.EventHandler(this.ResizeControl);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
