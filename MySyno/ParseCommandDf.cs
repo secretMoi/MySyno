@@ -13,7 +13,6 @@ namespace MySyno
 			Total = 1, Utilise = 2, Libre = 3, Utilisation = 4, Nom = 5
 		}
 
-		// todo mettre AddColonnes directement à l'appel
 		public ParseCommandDf()
 		{
 			_colonnesSelectionnees= new List<int>();

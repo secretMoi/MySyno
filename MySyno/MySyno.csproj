@@ -88,6 +88,12 @@
     <Compile Include="Controls\ElementGraphic.Designer.cs">
       <DependentUpon>ElementGraphic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FlatLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\FlatLabel.Designer.cs">
+      <DependentUpon>FlatLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FlatListBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

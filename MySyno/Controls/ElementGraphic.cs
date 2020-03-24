@@ -7,16 +7,17 @@ using MySyno.Core;
 using MySyno.Core.Figures;
 using Rectangle = MySyno.Core.Figures.Rectangle;
 
+// todo juste garder la classe et retirer les designers
 namespace MySyno.Controls
 {
     public partial class ElementGraphic
     {
-        protected readonly Dictionary<string, Figure> elements; // contient les figures de l'élément
-        protected Couple position; // position courante de l'élément
-        protected Couple dimensions; // utlisé lors de la création de chaque figure
-        protected double zoom;
+        private readonly Dictionary<string, Figure> elements; // contient les figures de l'élément
+        private Couple position; // position courante de l'élément
+        private Couple dimensions; // utlisé lors de la création de chaque figure
+        private double zoom;
 
-        protected Graphics Graphique;
+        private Graphics Graphique;
 
         #region Constructeurs
 
@@ -47,7 +48,7 @@ namespace MySyno.Controls
         #endregion
 
 
-        protected void InitGraphiqueFromPictureBox(PictureBox pictureBox)
+        public void InitGraphiqueFromPictureBox(PictureBox pictureBox)
         {
             Graphique = Graphics.FromHwnd(pictureBox.Handle);
         }

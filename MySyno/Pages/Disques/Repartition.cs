@@ -94,15 +94,14 @@ namespace MySyno.Pages.Disques
 
         private void flatButtonEnvoyer_Click(object sender, EventArgs e)
         {
-            string titre = flatListBox.Titre.Remove(0, 3);
+            int nombreResultats = Convert.ToInt32(flatTextBox.Texte);
 
+            string titre = flatListBox.Titre.Remove(0, 3);
             foreach (string nom in _nom)
             {
-                if (nom.Contains(titre))
-                {
-                    Ssh.SendCommand("find " + nom + " -type f -exec du -S {} + | sort -rh | head -n 100", GereEspace, 1);
-                    break;
-                }
+                if (!nom.Contains(titre)) continue; // tant qu'on ne trouve pas le nom
+                Ssh.SendCommand("find " + nom + " -type f -exec du -S {} + | sort -rh | head -n " + nombreResultats, GereEspace, 1);
+                break;
             }
         }
 
