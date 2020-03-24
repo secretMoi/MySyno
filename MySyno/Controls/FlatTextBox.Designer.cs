@@ -28,42 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.timerClignote = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.textBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // timerClignote
+            // textBox
             // 
-            this.timerClignote.Interval = 500;
-            this.timerClignote.Tick += new System.EventHandler(this.timerClignote_Tick);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(150, 40);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
+            this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox.Location = new System.Drawing.Point(0, 10);
+            this.textBox.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(150, 20);
+            this.textBox.TabIndex = 0;
             // 
             // FlatTextBox
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.textBox);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "FlatTextBox";
-            this.Size = new System.Drawing.Size(1856, 1890);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.Size = new System.Drawing.Size(150, 40);
+            this.SizeChanged += new System.EventHandler(this.ResizeControl);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Timer timerClignote;
-        private System.Windows.Forms.PictureBox pictureBox;
+
+        private System.Windows.Forms.TextBox textBox;
     }
 }

@@ -56,6 +56,7 @@
             this.panelTitre.Controls.Add(this.pictureBox);
             this.panelTitre.Controls.Add(this.labelTitre);
             this.panelTitre.Location = new System.Drawing.Point(0, 0);
+            this.panelTitre.Margin = new System.Windows.Forms.Padding(0);
             this.panelTitre.Name = "panelTitre";
             this.panelTitre.Size = new System.Drawing.Size(150, 40);
             this.panelTitre.TabIndex = 1;

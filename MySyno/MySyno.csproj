@@ -106,6 +106,7 @@
     <Compile Include="Controls\GraphicRepartition.Designer.cs">
       <DependentUpon>GraphicRepartition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Theme.cs" />
     <Compile Include="Core\Figures\RectangleArrondi.cs" />
     <Compile Include="Core\Figures\Texte.cs" />
     <Compile Include="Pages\Accueil.cs">

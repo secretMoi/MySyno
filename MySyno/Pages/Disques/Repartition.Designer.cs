@@ -34,7 +34,7 @@
             this.roundedCheckbox1 = new MySyno.Controls.Checkbox.RoundedCheckbox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flatListBox = new MySyno.Controls.FlatListBox();
-            this.flatTextBox1 = new MySyno.Controls.FlatTextBox();
+            this.flatTextBox = new MySyno.Controls.FlatTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +51,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+            this.panel1.Controls.Add(this.flatTextBox);
             this.panel1.Controls.Add(this.flatButtonEnvoyer);
             this.panel1.Controls.Add(this.roundedCheckbox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -100,31 +101,30 @@
             this.flatListBox.AutoSize = true;
             this.flatListBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flatListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-            this.flatListBox.Location = new System.Drawing.Point(1604, 17);
+            this.flatListBox.Location = new System.Drawing.Point(1593, 74);
             this.flatListBox.Margin = new System.Windows.Forms.Padding(0);
             this.flatListBox.MaximumSize = new System.Drawing.Size(150, 240);
             this.flatListBox.MinimumSize = new System.Drawing.Size(150, 40);
             this.flatListBox.Name = "flatListBox";
-            this.flatListBox.Size = new System.Drawing.Size(150, 43);
+            this.flatListBox.Size = new System.Drawing.Size(150, 40);
             this.flatListBox.TabIndex = 15;
             this.flatListBox.Titre = "Disque";
             // 
-            // flatTextBox1
+            // flatTextBox
             // 
-            this.flatTextBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flatTextBox1.BackColor = System.Drawing.Color.White;
-            this.flatTextBox1.Location = new System.Drawing.Point(177, 30);
-            this.flatTextBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.flatTextBox1.Name = "flatTextBox1";
-            this.flatTextBox1.Size = new System.Drawing.Size(150, 40);
-            this.flatTextBox1.TabIndex = 20;
-            this.flatTextBox1.Texte = null;
+            this.flatTextBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.flatTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+            this.flatTextBox.Location = new System.Drawing.Point(1469, 74);
+            this.flatTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.flatTextBox.Name = "flatTextBox";
+            this.flatTextBox.Size = new System.Drawing.Size(83, 40);
+            this.flatTextBox.TabIndex = 2;
+            this.flatTextBox.Texte = "";
             // 
             // Repartition
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.flatListBox);
-            this.Controls.Add(this.flatTextBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Repartition";
@@ -144,6 +144,6 @@
         private System.Windows.Forms.Panel panel2;
         private Controls.FlatListBox flatListBox;
         private Controls.Buttons.FlatButton flatButtonEnvoyer;
-        private Controls.FlatTextBox flatTextBox1;
+        private Controls.FlatTextBox flatTextBox;
     }
 }

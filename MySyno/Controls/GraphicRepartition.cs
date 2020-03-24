@@ -8,19 +8,20 @@ using MySyno.Core.Figures;
 
 namespace MySyno.Controls
 {
-	public partial class GraphicRepartition : ElementGraphic
-	{
+	public partial class GraphicRepartition : UserControl
+    {
+        private readonly ElementGraphic _element;
 		private Dictionary<string, float> _data;
 
 		// utilisé pour ne pas scroller trop haut ou trop bas
 		private Figure _premiereFigure;
 		private Figure _derniereFigure;
 
-		public GraphicRepartition() : base(new Couple(0,0))
+		public GraphicRepartition()
 		{
 			InitializeComponent();
 
-			InitGraphiqueFromPictureBox(pictureBox1);
+			_element = new ElementGraphic(pictureBox1);
 
 			pictureBox1.MouseWheel += pictureBox1_MouseWheel;
 		}
@@ -40,57 +41,64 @@ namespace MySyno.Controls
             Couple positionDestinationLigneVerticale = new Couple();
 
 			float rapport = (Width - 100) / PlusGrandeValeur() * 0.95f;
-			foreach (KeyValuePair<string, float> element in _data)
+			foreach (KeyValuePair<string, float> item in _data)
 			{
 				// nom
 				// hauteur 12.5 * 5 => 62
-				Dimensionne(12.5f);
-				position.X = 10;
-				position.Y = compteur * dimensions.Y * 5;
-				AjouterTexte("Label" + element.Key, element.Key, Color.Black);
+				_element.Dimensionne(12.5f);
+                _element.Positionne(
+                    10,
+                    compteur * _element.GetDimension.Y * 5
+                );
+
+                _element.AjouterTexte("Label" + item.Key, item.Key, Color.Black);
 
 				// barre
 				// hauteur = 62 + 25 = 87
 				// hauteur finale = 87 + 20 = 107
-				position.X = 100;
-				position.Y += 25;
-				Dimensionne((int) (element.Value * rapport), 20);
-				AjouterRectangle("Rectangle" + element.Key, Color.FromArgb(33, 150, 245));
+                _element.Positionne(
+                    100,
+                    _element.GetPosition.Y + 25
+                );
+                _element.Dimensionne((int) (item.Value * rapport), 20);
+                _element.AjouterRectangle("Rectangle" + item.Key, Theme.BackLight);
 
 				// valeur
-				Dimensionne(12.5f);
-				position.X += 7;
-				position.Y -= 1;
-				
-				AjouterTexte("Valeur" + element.Key, ConvertitNombre(element.Value), Color.White);
+                _element.Dimensionne(12.5f);
+                _element.Positionne(
+                    _element.GetPosition.X + 7,
+                    _element.GetPosition.Y - 1
+                );
+
+				_element.AjouterTexte("Valeur" + item.Key, ConvertitNombre(item.Value), Theme.Texte);
 
                 if (compteur == 0) // si premier élément
                 {
-                    _premiereFigure = GetFigure("Label" + element.Key);
+                    _premiereFigure = _element.GetFigure("Label" + item.Key);
 
                     positionSourceLigneVerticale = new Couple(
-                        GetFigure("Rectangle" + element.Key).Position.X + GetFigure("Rectangle" + element.Key).Dimension.X,
-                        GetFigure("Rectangle" + element.Key).Position.Y
+                        _element.GetFigure("Rectangle" + item.Key).Position.X + _element.GetFigure("Rectangle" + item.Key).Dimension.X,
+                        _element.GetFigure("Rectangle" + item.Key).Position.Y
 					);
 
                 }
 
                 if (compteur == _data.Count - 1) // si dernier élément
 				{
-                    _derniereFigure = GetFigure("Label" + element.Key);
+                    _derniereFigure = _element.GetFigure("Label" + item.Key);
 
                     positionDestinationLigneVerticale = new Couple(
                         positionSourceLigneVerticale.X,
-                        GetFigure("Rectangle" + element.Key).Position.Y + GetFigure("Rectangle" + element.Key).Dimension.Y
+                        _element.GetFigure("Rectangle" + item.Key).Position.Y + _element.GetFigure("Rectangle" + item.Key).Dimension.Y
 					);
 				}
 
                 compteur++;
 			}
 
-            position = positionSourceLigneVerticale;
-            dimensions = positionDestinationLigneVerticale;
-			AjouterLigne("LigneVerticale", Color.Black, 1);
+			_element.Positionne(positionSourceLigneVerticale);
+			_element.Dimensionne(positionDestinationLigneVerticale);
+            _element.AjouterLigne("LigneVerticale", Color.Black, 1);
 
 			pictureBox1.Invalidate();
 		}
@@ -158,7 +166,7 @@ namespace MySyno.Controls
 
 			if (_premiereFigure.Position.Y + scroll < 110 && _derniereFigure.Position.Y + scroll > pictureBox1.Height - 110)
 			{
-				Deplace(0, valeur);
+                _element.Deplace(0, valeur);
 
 				pictureBox1.Invalidate();
 			}
@@ -166,7 +174,7 @@ namespace MySyno.Controls
 
 		private void pictureBox1_Paint(object sender, PaintEventArgs e)
 		{
-			Affiche(e.Graphics);
+            _element.Affiche(e.Graphics);
 		}
 
 		// event lors du redimensionnement de la fenêtre
@@ -184,7 +192,7 @@ namespace MySyno.Controls
 
         public void Clear()
         {
-            elements.Clear();
+            _element.Clear();
             pictureBox1.Image = null;
 		}
 	}

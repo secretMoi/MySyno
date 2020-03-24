@@ -7,10 +7,9 @@ using MySyno.Core;
 using MySyno.Core.Figures;
 using Rectangle = MySyno.Core.Figures.Rectangle;
 
-// todo ne plus hériter mais juste contenir la classe pour que les autres controls puisse directement hériter de ce qu'ils veulent
 namespace MySyno.Controls
 {
-    public partial class ElementGraphic : ThemePanel
+    public partial class ElementGraphic
     {
         protected readonly Dictionary<string, Figure> elements; // contient les figures de l'élément
         protected Couple position; // position courante de l'élément
@@ -19,10 +18,10 @@ namespace MySyno.Controls
 
         protected Graphics Graphique;
 
+        #region Constructeurs
+
         public ElementGraphic()
         {
-            InitializeComponent();
-
             elements = new Dictionary<string, Figure>();
 
             position = new Couple(0, 0);
@@ -35,6 +34,19 @@ namespace MySyno.Controls
             this.position = position.Copie();
         }
 
+        public ElementGraphic(Graphics graphics) : this()
+        {
+            Graphique = graphics;
+        }
+
+        public ElementGraphic(PictureBox pictureBox) : this()
+        {
+            InitGraphiqueFromPictureBox(pictureBox);
+        }
+
+        #endregion
+
+
         protected void InitGraphiqueFromPictureBox(PictureBox pictureBox)
         {
             Graphique = Graphics.FromHwnd(pictureBox.Handle);
@@ -46,21 +58,60 @@ namespace MySyno.Controls
             this.zoom = zoom;
         }
 
+        #region Dimensionne
+
         // permet de mettre à l'échelle un élément
-        protected void Dimensionne(float x, float y)
+        public void Dimensionne(float x, float y)
         {
             dimensions = new Couple(x * zoom, y * zoom);
         }
-        // permet de mettre à l'échelle un élément
-        protected void Dimensionne(float x)
+        public void Dimensionne(float x)
         {
             dimensions = new Couple(x * zoom, x * zoom);
         }
-        // permet de mettre à l'échelle un élément
-        protected void Dimensionne(Size taille)
+        public void Dimensionne(double x, double y)
+        {
+            dimensions = new Couple(x * zoom, y * zoom);
+        }
+        public void Dimensionne(double x)
+        {
+            dimensions = new Couple(x * zoom, x * zoom);
+        }
+        public void Dimensionne(Size taille)
         {
             dimensions = new Couple(taille);
         }
+        public void Dimensionne(Couple taille)
+        {
+            dimensions = taille.Copie();
+        }
+
+        #endregion
+
+        #region Positionne
+
+        public void Positionne(float x, float y)
+        {
+            position = new Couple(x * zoom, y * zoom);
+        }
+        public void Positionne(float x)
+        {
+            position = new Couple(x * zoom, x * zoom);
+        }
+        public void Positionne(double x, double y)
+        {
+            position = new Couple(x * zoom, y * zoom);
+        }
+        public void Positionne(double x)
+        {
+            position = new Couple(x * zoom, x * zoom);
+        }
+        public void Positionne(Couple pos)
+        {
+            position = pos.Copie();
+        }
+
+        #endregion
 
         // affiche toutes les figures de l'élément
         public virtual void Affiche(Graphics graphics)
@@ -80,31 +131,33 @@ namespace MySyno.Controls
             }
         }
 
-        protected void AjouterRectangle(string cle, Color? remplissage = null)
+        #region Ajouterfigure
+
+        public void AjouterRectangle(string cle, Color? remplissage = null)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Rectangle(Graphique, position, dimensions, remplissage));
         }
 
-        protected void AjouterDisque(string cle, Color remplissage, Color? contour = null, int largeurContour = 0)
+        public void AjouterDisque(string cle, Color remplissage, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Disque(Graphique, position, dimensions.Xi, remplissage, contour, largeurContour));
         }
 
-        protected void AjouterCercle(string cle, Color contour, int largeurContour = 1)
+        public void AjouterCercle(string cle, Color contour, int largeurContour = 1)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Cercle(Graphique, position, dimensions.Xi, contour, largeurContour));
         }
 
-        protected void AjouterEllipse(string cle, Color remplissage, Color? contour = null, int largeurContour = 0)
+        public void AjouterEllipse(string cle, Color remplissage, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Ellipse(Graphique, position, dimensions, remplissage, contour, largeurContour));
         }
 
-        protected void AjouterLigne(string cle, Color contour, int largeurContour)
+        public void AjouterLigne(string cle, Color contour, int largeurContour)
         {
             if (elements.ContainsKey(cle)) return;
 
@@ -113,29 +166,33 @@ namespace MySyno.Controls
             elements.Add(cle, new Ligne(Graphique, positionSource, positionDestination, contour, largeurContour));
         }
 
-        protected void AjouterArc(string cle, Color contour, int largeurContour, float angleDebut, float amplitude)
+        public void AjouterArc(string cle, Color contour, int largeurContour, float angleDebut, float amplitude)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Arc(Graphique, position, dimensions, contour, largeurContour, angleDebut, amplitude));
         }
 
-        protected void AjouterTexte(string cle, string texte, Color remplissage, FontStyle style = default, string police = "Yu Gothic UI")
+        public void AjouterTexte(string cle, string texte, Color remplissage, FontStyle style = default, string police = "Yu Gothic UI")
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new Texte(Graphique, texte, position, remplissage, dimensions.Xf, style, police));
         }
 
-        protected void AjouterRectangleArrondi(string cle, int arrondi, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
+        public void AjouterRectangleArrondi(string cle, int arrondi, Color? remplissage = null, Color? contour = null, int largeurContour = 0)
         {
             if (elements.ContainsKey(cle)) return;
             elements.Add(cle, new RectangleArrondi(Graphique, position, dimensions, arrondi, remplissage, contour, largeurContour));
         }
 
-        protected void Remove(string cle)
+        #endregion
+
+        public void Remove(string cle)
         {
             if (!elements.ContainsKey(cle)) return;
             elements.Remove(cle);
         }
+
+        #region Deplace
 
         // déplace à une position donnée
         public void Deplace(Couple positionDestination)
@@ -172,6 +229,8 @@ namespace MySyno.Controls
 
             figure.Deplace(figure.Position.Xi + x, figure.Position.Yi + y);
         }
+
+        #endregion
 
         public List<Figure> ListeElements()
         {
@@ -225,9 +284,6 @@ namespace MySyno.Controls
             return position;
         }
 
-        public Couple GetPosition => position;
-        public Couple GetDimension => dimensions;
-
         public Couple Dimension(string cle)
         {
             if (GetFigure(cle) != null)
@@ -236,9 +292,17 @@ namespace MySyno.Controls
             return dimensions;
         }
 
+        public Couple GetPosition => position;
+        public Couple GetDimension => dimensions;
+
         public Dictionary<string, Figure> ListeFigures()
         {
             return elements;
+        }
+
+        public void Clear()
+        {
+            elements.Clear();
         }
     }
 }

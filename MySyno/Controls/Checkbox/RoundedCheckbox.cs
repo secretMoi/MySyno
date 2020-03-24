@@ -4,8 +4,10 @@ using MySyno.Core.Figures;
 
 namespace MySyno.Controls.Checkbox
 {
-    public partial class RoundedCheckbox : ElementGraphic
+    public partial class RoundedCheckbox : UserControl
     {
+        private readonly ElementGraphic element;
+
         private readonly Color _offColor = Color.FromArgb(238, 83, 79);
         private readonly Color _onColor = Color.FromArgb(76, 176, 80);
         private readonly Color _disqueColor = Color.FromArgb(230, 230, 230);
@@ -22,7 +24,7 @@ namespace MySyno.Controls.Checkbox
 
             Dock = DockStyle.None;
 
-            InitGraphiqueFromPictureBox(pictureBox);
+            element = new ElementGraphic(pictureBox);
 
             InitialiseCadre();
             InitialiseCercle();
@@ -31,54 +33,63 @@ namespace MySyno.Controls.Checkbox
 
         private void TexteOff()
         {
-            Dimensionne(TailleTexte);
-            position.X = elements["Bouton"].Dimension.X - 35;
-            position.Y = elements["Disque"].Position.Y - 2;
-            AjouterTexte("Label", "Off", _disqueColor, FontStyle.Bold);
+            element.Dimensionne(TailleTexte);
+            element.Positionne(
+                element.Dimension("Bouton").X - 35,
+                element.Position("Disque").Y - 2
+            );
+            
+            element.AjouterTexte("Label", "Off", _disqueColor, FontStyle.Bold);
         }
         private void TexteOn()
         {
-            Dimensionne(TailleTexte);
-            position.X = 5;
-            position.Y = elements["Disque"].Position.Y - 2;
-            AjouterTexte("Label", "On", _disqueColor, FontStyle.Bold);
+            element.Dimensionne(TailleTexte);
+            element.Positionne(
+                5,
+                element.Position("Disque").Y - 2
+            );
+
+            element.AjouterTexte("Label", "On", _disqueColor, FontStyle.Bold);
         }
 
         private void InitialiseCadre()
         {
-            Dimensionne(70, 30);
-            AjouterRectangleArrondi("Bouton", dimensions.Xi / 2, _offColor);
+            element.Dimensionne(70, 30);
+            element.AjouterRectangleArrondi("Bouton", element.GetDimension.Xi / 2, _offColor);
         }
 
         private void InitialiseCercle()
         {
-            Dimensionne(20);
-            position.X = 10;
-            position.Y = (elements["Bouton"].Dimension.Y - dimensions.Y) / 2;
-            AjouterDisque("Disque", _disqueColor);
+            element.Dimensionne(20);
+            element.Positionne(
+                10,
+                (element.Dimension("Bouton").Y - element.GetDimension.Y) / 2
+                );
 
-            _positionDebut = position.Xi;
-            _positionFin = elements["Bouton"].Dimension.Xi - _positionDebut - dimensions.Xi;
+            element.AjouterDisque("Disque", _disqueColor);
+
+            _positionDebut = element.GetPosition.Xi;
+            _positionFin = element.Dimension("Bouton").Xi - _positionDebut - element.GetDimension.Xi;
         }
 
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-            Affiche(e.Graphics);
+            element.Affiche(e.Graphics);
         }
 
         private void timerSlide_Tick(object sender, System.EventArgs e)
         {
             if (State)
             {
-                Deplace("Disque", -VitesseAnimation);
+                element.Deplace("Disque", -VitesseAnimation);
 
-                if (elements["Disque"].Position.X <= _positionDebut)
+                if (element.Position("Disque").X <= _positionDebut)
                 {
-                    elements["Disque"].Position.X = _positionDebut;
+                    element.Position("Disque").X = _positionDebut;
                     timerSlide.Stop();
-                    GetFigure("Bouton").SetBrosse(_offColor);
+                    element.GetFigure("Bouton").SetBrosse(_offColor);
 
-                    Remove("Label");
+                    element.Remove("Label");
                     TexteOff();
 
                     State = !State;
@@ -86,15 +97,15 @@ namespace MySyno.Controls.Checkbox
             }
             else
             {
-                Deplace("Disque", VitesseAnimation);
+                element.Deplace("Disque", VitesseAnimation);
 
-                if (elements["Disque"].Position.X >= _positionFin)
+                if (element.Position("Disque").X >= _positionFin)
                 {
-                    elements["Disque"].Position.X = _positionFin;
+                    element.Position("Disque").X = _positionFin;
                     timerSlide.Stop();
-                    GetFigure("Bouton").SetBrosse(_onColor);
+                    element.GetFigure("Bouton").SetBrosse(_onColor);
 
-                    Remove("Label");
+                    element.Remove("Label");
                     TexteOn();
 
                     State = !State;
